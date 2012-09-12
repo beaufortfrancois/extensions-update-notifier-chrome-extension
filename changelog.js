@@ -8,7 +8,7 @@ document.getElementById('title').textContent = title;
 document.title = title;
 
 var xhr = new XMLHttpRequest();
-xhr.open('GET', extension.homepageUrl, true);
+xhr.open('GET', 'https://chrome.google.com/webstore/detail/' + extension.id, true);
 xhr.setRequestHeader("Cache-Control","no-cache,max-age=0");
 
 xhr.onreadystatechange = function(e) {
