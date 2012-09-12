@@ -1,0 +1,39 @@
+body {
+  margin: 0 auto;
+  color: #444;
+  font-family: monospace;
+}
+
+#title {
+  padding-top: 32px;
+  font-size: 18px;
+  text-align: center;
+}
+#title:after {
+  content: 'alpha';
+  color: pink;
+  font-weight: bold;
+  font-size: 60%;
+  padding-left: 4px;
+  vertical-align: super;
+}
+
+#changelog {
+  padding: 8px;
+  font-size: 12px;
+  width: 800px;
+  margin: 0 auto;
+  background-color: #eee;
+  white-space: pre-wrap;
+  margin-top: 24px;
+  margin-bottom: 24px;
+  border-radius: 8px;
+}
+
+#sorry {
+  padding: 8px;
+  width: 800px;
+  margin: 0 auto;
+  margin-top: 24px;
+  text-align: center;
+}

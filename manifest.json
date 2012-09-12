@@ -1,0 +1,20 @@
+{
+   "background": {
+      "scripts": [ "background.js" ]
+   },
+   "default_locale": "en",
+   "description": "__MSG_extDescription__",
+   "icons": {
+      "128": "128.png",
+      "16": "16.png",
+      "256": "256.png",
+      "32": "32.png",
+      "48": "48.png",
+      "64": "64.png"
+   },
+   "manifest_version": 2,
+   "name": "__MSG_extName__",
+   "optional_permissions": [ "https://chrome.google.com/*" ],
+   "permissions": [ "management", "notifications" ],
+   "version": "1.4"
+}
