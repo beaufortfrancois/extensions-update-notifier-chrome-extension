@@ -30,7 +30,7 @@ function checkMalware(extension) {
   }
 
   // If user did not install extension (not app) consciously and has not already acknowledged, we should ask him
-  if (extension.isApp === 'false' && extension.installType === 'sideload' && hasAlreadyBeenViewed === false) {
+  if (extension.isApp === false && extension.installType === 'sideload' && hasAlreadyBeenViewed === false) {
     showNotification(extension, 'warning.html');
   }
 }
