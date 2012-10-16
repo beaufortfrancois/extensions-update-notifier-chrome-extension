@@ -29,16 +29,16 @@ if (window.location.hash) {
       // Ask permissions first
       chrome.permissions.request({ origins: ['https://chrome.google.com/*'] }, function(granted) {
         if (granted) {
-	  // Open changelog
+          // Open changelog
           chrome.tabs.create({
-	    'url': chrome.extension.getURL('changelog.html') + '#' + encodeURIComponent(JSON.stringify(extension))
+            'url': chrome.extension.getURL('changelog.html') + '#' + encodeURIComponent(JSON.stringify(extension))
           });
         }
       });
     });
   }
 
-  if (extension.icons && extension.icons.length != 0) {
+  if (extension.icons && extension.icons.length !== 0) {
     icon.src = extension.icons[extension.icons.length-1].url;
   } else {
     icon.src = 'chrome://extension-icon/' + extension.id + '/32/0';

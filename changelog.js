@@ -15,7 +15,7 @@ xhr.onreadystatechange = function(e) {
   if (this.readyState == 4 && this.status == 200) {
     var r = this.response;
     // Check what's inside <pre></pre> tags
-    var text = r.substring(r.search('<pre '), r.search('</pre>')+6)
+    var text = r.substring(r.search('<pre '), r.search('</pre>')+6);
 
     // And only if the word "changelog" is inside, we assume there is a changelog
     if (text.search(/changelog/i) !== -1) {
