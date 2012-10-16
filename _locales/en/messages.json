@@ -3,6 +3,14 @@
       "description": "Link displayed in the extension notification to open changelog page.",
       "message": "Open Changelog"
    },
+   "confirmText": {
+      "description": "Text displayed in the extension warning to confirm the extension presence.",
+      "message": "I know"
+   },
+   "disableText": {
+      "description": "Text displayed in the extension warning to disable the extension.",
+      "message": "Disable"
+   },
    "enableText": {
       "description": "Text displayed in the extension notification to enable the extension.",
       "message": "Enable"
@@ -44,6 +52,16 @@
          "extensionName": {
             "content": "$1",
             "example": "My Chrome Extension"
+         }
+      }
+   },
+   "warningExtensionText": {
+      "description": "Text displayed in the extension warning. Expects extension name to be passed in.",
+      "message": "Did you know <b>$extensionName$</b><br/> was installed without your approval?",
+      "placeholders": {
+         "extensionName": {
+            "content": "$1",
+            "example": "A Chrome Extension"
          }
       }
    },

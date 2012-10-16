@@ -1,0 +1,22 @@
+body {
+  font-family: helvetica, arial, sans-serif;
+  font-size: 13px;
+}
+#icon {
+  height: 32px;
+  width: 32px;
+  float: left;
+}
+#text {
+  margin-left: 38px;
+}
+#actions {
+  margin-top: 6px;
+  float: right;
+  color: #15C;
+  margin: 8px;
+}
+#actions > span {
+  text-decoration: underline;
+  padding-left: 11px;
+}
