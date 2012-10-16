@@ -16,6 +16,6 @@
    "name": "__MSG_extName__",
    "optional_permissions": [ "https://chrome.google.com/*" ],
    "permissions": [ "management", "notifications" ],
-   "version": "1.5",
+   "version": "1.5.1",
    "web_accessible_resources": [ "warning.png" ]
 }
