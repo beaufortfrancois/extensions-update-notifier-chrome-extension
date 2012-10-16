@@ -1,0 +1,72 @@
+{
+   "changelogLink": {
+      "description": "Link displayed in the extension notification to open changelog page.",
+      "message": "Open Changelog"
+   },
+   "confirmText": {
+      "description": "Text displayed in the extension warning to confirm the extension presence.",
+      "message": "I know"
+   },
+   "disableText": {
+      "description": "Text displayed in the extension warning to disable the extension.",
+      "message": "Disable"
+   },
+   "enableText": {
+      "description": "Text displayed in the extension notification to enable the extension.",
+      "message": "Enable"
+   },
+   "extDescription": {
+      "description": "Extension description.",
+      "message": "Show a notification when an extension is updated."
+   },
+   "extName": {
+      "description": "Extension name.",
+      "message": "Extensions Update Notifier"
+   },
+   "extensionWebstoreLink": {
+      "description": "Link displayed in the extension notification.",
+      "message": "Visit Website"
+   },
+   "loadingChangelogText": {
+      "description": "Text displayed in the changelog when retrieving changelog.",
+      "message": "Loading..."
+   },
+   "sorryChangelogText": {
+      "description": "Text displayed in the changelog when there is no changelog provided.",
+      "message": "Sorry... there is no changelog detected."
+   },
+   "titleChangelogText": {
+      "description": "Title displayed in the changelog.",
+      "message": "$extensionName$ Changelog",
+      "placeholders": {
+         "extensionName": {
+            "content": "$1",
+            "example": "My Chrome Extension"
+         }
+      }
+   },
+   "updatedExtensionText": {
+      "description": "Text displayed in the extension notification. Expects extension name to be passed in.",
+      "message": "<b>$extensionName$</b><br/> has been updated.",
+      "placeholders": {
+         "extensionName": {
+            "content": "$1",
+            "example": "My Chrome Extension"
+         }
+      }
+   },
+   "warningExtensionText": {
+      "description": "Text displayed in the extension warning. Expects extension name to be passed in.",
+      "message": "Did you know <b>$extensionName$</b><br/> was installed without your approval?",
+      "placeholders": {
+         "extensionName": {
+            "content": "$1",
+            "example": "A Chrome Extension"
+         }
+      }
+   },
+   "welcomeText": {
+      "description": "Text displayed in the welcome notification.",
+      "message": "You'll start to see notifications as soon as an extension is updated."
+   }
+}
