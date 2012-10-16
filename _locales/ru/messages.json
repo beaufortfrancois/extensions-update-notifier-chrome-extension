@@ -1,43 +1,43 @@
-{
+﻿{
    "changelogLink": {
       "description": "Link displayed in the extension notification to open changelog page.",
-      "message": "Open Changelog"
+      "message": "Изменеия"
    },
    "confirmText": {
       "description": "Text displayed in the extension warning to confirm the extension presence.",
-      "message": "I know"
+      "message": "Я знаю"
    },
    "disableText": {
       "description": "Text displayed in the extension warning to disable the extension.",
-      "message": "Disable"
+      "message": "Отключить"
    },
    "enableText": {
       "description": "Text displayed in the extension notification to enable the extension.",
-      "message": "Enable"
+      "message": "Включить"
    },
    "extDescription": {
       "description": "Extension description.",
-      "message": "Show a notification when an extension is updated."
+      "message": "Показывать уведомление, при обновлениях расширений."
    },
    "extName": {
       "description": "Extension name.",
-      "message": "Extensions Update Notifier"
+      "message": "Уведомление об обновлениях расширений"
    },
    "extensionWebstoreLink": {
       "description": "Link displayed in the extension notification.",
-      "message": "Visit Website"
+      "message": "Веб-сайт"
    },
    "loadingChangelogText": {
       "description": "Text displayed in the changelog when retrieving changelog.",
-      "message": "Loading..."
+      "message": "Загрузка..."
    },
    "sorryChangelogText": {
       "description": "Text displayed in the changelog when there is no changelog provided.",
-      "message": "Sorry... there is no changelog detected."
+      "message": "Извините ... никаких изменений не обнаружено."
    },
    "titleChangelogText": {
       "description": "Title displayed in the changelog.",
-      "message": "$extensionName$ Changelog",
+      "message": "Изменение $extensionName$",
       "placeholders": {
          "extensionName": {
             "content": "$1",
@@ -47,7 +47,7 @@
    },
    "updatedExtensionText": {
       "description": "Text displayed in the extension notification. Expects extension name to be passed in.",
-      "message": "<b>$extensionName$</b><br/> has been updated.",
+      "message": "\u003Cb\u003E$extensionName$\u003C/b\u003E\u003Cbr/\u003E обновлено.",
       "placeholders": {
          "extensionName": {
             "content": "$1",
@@ -57,7 +57,7 @@
    },
    "warningExtensionText": {
       "description": "Text displayed in the extension warning. Expects extension name to be passed in.",
-      "message": "Did you know <b>$extensionName$</b><br/> was installed without your approval?",
+      "message": "Вы знаете, что \u003Cb\u003E$extensionName$\u003C/b\u003E\u003Cbr/\u003E было установлено без вашего согласия?",
       "placeholders": {
          "extensionName": {
             "content": "$1",
@@ -67,6 +67,6 @@
    },
    "welcomeText": {
       "description": "Text displayed in the welcome notification.",
-      "message": "You'll start to see notifications as soon as an extension is updated."
+      "message": "Вы начнете видеть уведомления, как только расширения обновятся."
    }
 }
