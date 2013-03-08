@@ -1,33 +1,30 @@
 body {
   margin: 0 auto;
-  color: #444;
-  font-family: monospace;
+  color: #303942;
+  font-family: 'Noto Sans UI', sans-serif;
+  margin-left: 80px;
+  -webkit-margin-start: 155px;
+  font-size: 75%;
 }
 
 #title {
-  padding-top: 32px;
-  font-size: 18px;
-  text-align: center;
-}
-#title:after {
-  content: 'alpha';
-  color: pink;
-  font-weight: bold;
-  font-size: 60%;
-  padding-left: 4px;
-  vertical-align: super;
+  padding: 21px 0 13px;
+  font-size: 1.5em;
+  -webkit-user-select: none;
+  font-weight: normal;
+  line-height: 1;
+  border-bottom: 1px solid #EEE;
+  width: 800px;
 }
 
 #changelog {
-  padding: 8px;
-  font-size: 12px;
   width: 800px;
-  margin: 0 auto;
-  background-color: #eee;
+  font-family: monospace;
+  background-color: white;
+  padding: 12px;
+  font-size: 12px;
   white-space: pre-wrap;
-  margin-top: 24px;
   margin-bottom: 24px;
-  border-radius: 8px;
 }
 
 #sorry {

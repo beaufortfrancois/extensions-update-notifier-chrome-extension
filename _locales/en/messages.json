@@ -1,19 +1,21 @@
 {
-   "changelogLink": {
-      "description": "Link displayed in the extension notification to open changelog page.",
-      "message": "Open Changelog"
+   "changelogButtonTitle": {
+      "description": "Text displayed in the extension notification to open changelog page.",
+      "message": "Open changelog (experimental)"
    },
-   "confirmText": {
-      "description": "Text displayed in the extension warning to confirm the extension presence.",
-      "message": "I know"
-   },
-   "disableText": {
-      "description": "Text displayed in the extension warning to disable the extension.",
-      "message": "Disable"
-   },
-   "enableText": {
+   "enableButtonTitle": {
       "description": "Text displayed in the extension notification to enable the extension.",
       "message": "Enable"
+   },
+   "enabledExtensionMessage": {
+      "description": "Text displayed in the extension enabled notification. Expects extension name to be passed in.",
+      "message": "$extensionName$ has been successfully enabled.",
+      "placeholders": {
+         "extensionName": {
+            "content": "$1",
+            "example": "My Chrome Extension"
+         }
+       }
    },
    "extDescription": {
       "description": "Extension description.",
@@ -23,9 +25,9 @@
       "description": "Extension name.",
       "message": "Extensions Update Notifier"
    },
-   "extensionWebstoreLink": {
-      "description": "Link displayed in the extension notification.",
-      "message": "Visit Website"
+   "websiteButtonTitle": {
+      "description": "Text displayed in the extension update notification to visit the website.",
+      "message": "Visit website"
    },
    "loadingChangelogText": {
       "description": "Text displayed in the changelog when retrieving changelog.",
@@ -45,9 +47,23 @@
          }
       }
    },
-   "updatedExtensionText": {
-      "description": "Text displayed in the extension notification. Expects extension name to be passed in.",
-      "message": "<b>$extensionName$</b><br/> has been updated.",
+   "updatedExtensionMessage": {
+      "description": "Text displayed in the extension notification. Expects extension name and version to be passed in.",
+      "message": "$extensionName$ has been updated to v.$extensionVersion$.",
+      "placeholders": {
+         "extensionName": {
+            "content": "$1",
+            "example": "My Chrome Extension"
+         },
+         "extensionVersion": {
+            "content": "$2",
+            "example": "2.0"
+         }
+      }
+   },
+   "updatedExtensionTitle": {
+      "description": "Title displayed in the extension notification. Expects extension name to be passed in.",
+      "message": "$extensionName$ Update",
       "placeholders": {
          "extensionName": {
             "content": "$1",
@@ -55,18 +71,12 @@
          }
       }
    },
-   "warningExtensionText": {
-      "description": "Text displayed in the extension warning. Expects extension name to be passed in.",
-      "message": "Did you know <b>$extensionName$</b><br/> was installed without your approval?",
-      "placeholders": {
-         "extensionName": {
-            "content": "$1",
-            "example": "A Chrome Extension"
-         }
-      }
-   },
    "welcomeText": {
       "description": "Text displayed in the welcome notification.",
-      "message": "You'll start to see notifications as soon as an extension is updated."
+      "message": "You'll be notified as soon as an extension is updated."
+   },
+   "welcomeTitle": {
+      "description": "Title displayed in the welcome notification.",
+      "message": "Rest assured"
    }
 }

@@ -1,14 +1,19 @@
 var changelog = document.getElementById('changelog');
+
+var extension = null;
+var extensionId = window.location.hash.substr(1);
+
+chrome.management.get(extensionId, function(extension) {
+  document.getElementById('title').textContent = extension.name;
+  document.title = chrome.i18n.getMessage('titleChangelogText', [extension.name]);
+});
+
+function showChangelog() {
+// Display loading message
 changelog.innerHTML = chrome.i18n.getMessage('loadingChangelogText');
 
-var extension = JSON.parse(decodeURIComponent(window.location.hash.substr(1)));
-
-var title = chrome.i18n.getMessage('titleChangelogText', [extension.name]);
-document.getElementById('title').textContent = title;
-document.title = title;
-
 var xhr = new XMLHttpRequest();
-xhr.open('GET', 'https://chrome.google.com/webstore/detail/' + extension.id, true);
+xhr.open('GET', 'https://chrome.google.com/webstore/detail/' + extensionId, true);
 xhr.setRequestHeader("Cache-Control","no-cache,max-age=0");
 
 xhr.onreadystatechange = function(e) {
@@ -28,4 +33,23 @@ xhr.onreadystatechange = function(e) {
   }
 };
 
-xhr.send();
+xhr.send(null);
+
+}
+
+var permissions = { origins: ['https://chrome.google.com/*'] };
+
+chrome.permissions.contains(permissions, function(hasPermissions) {
+  if (hasPermissions) {
+    showChangelog();
+  } else {
+    changelog.innerHTML = 'This feature requests an additional permission. Click anywhere to get permissions prompt';
+    document.addEventListener('click', function() {
+      chrome.permissions.request(permissions, function(granted) {
+        if (granted) {
+          showChangelog();
+        }
+      });
+    });
+  }
+});
