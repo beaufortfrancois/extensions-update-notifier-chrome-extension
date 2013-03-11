@@ -1,88 +1,56 @@
 // TODO: To remove
 localStorage.knmdbhdejcjgpahocbnbbekpaehgghnk = '0';
 localStorage.eignhdfgaldabilaaegmdfbajngjmoke = '0';
+localStorage.mhmmajefehoodegeclhdlphahchnhfjk = '0';
 
 // TODO: To remove when API is stable
 chrome.notifications = chrome.notifications || chrome.experimental.notification;
 
+function getExtensionIconUrl(extensionId) {
+  var extensionId = extensionId || chrome.runtime.id;
+  return 'chrome://extension-icon/'+ extensionId +'/128/0';
+}
+
 function showUpdateNotification(extension) {
-
-  var iconUrl = 'chrome://extension-icon/'+ extension.id +'/128/0'; 
-  var buttons = [];
-
-  // Don't show any buttons if it's a development extension
-  if (extension.installType !== 'development') {
-
-    // Add "Visit website" button if it has one website
-    if (extension.homepageUrl) {
-      buttons.push({
-        title: chrome.i18n.getMessage('websiteButtonTitle'),
-        iconUrl: chrome.extension.getURL('images/website_16.png')
-      });
-    }
-
-    // Make the icon gray and the "Enable" button if the extension is disabled
-    if (!extension.enabled) {
-      iconUrl += '?grayscale=true';
-
-      buttons.push({
-        title: chrome.i18n.getMessage('enableButtonTitle'),
-        iconUrl: chrome.extension.getURL('images/16.png')
-      });
-    }
-
-    // If the extension has a homepage and is enabled, add the "Open changelog" button
-    if (extension.homepageUrl && extension.enabled) {
-      buttons.push({
-        title: chrome.i18n.getMessage('changelogButtonTitle'),
-        iconUrl: chrome.extension.getURL('images/16.png')
-      }); 
-    }
-  }
-
   var options = {
     templateType : 'basic',
     title: chrome.i18n.getMessage('updatedExtensionTitle', [extension.name]),
     message: chrome.i18n.getMessage('updatedExtensionMessage', [extension.name, extension.version]),
-    iconUrl: iconUrl,
-    buttons: buttons
+    iconUrl: getExtensionIconUrl(extension.id),
+    buttons: []
   };
 
-  chrome.notifications.onButtonClicked.addListener(function(extensionId, buttonIndex) {
+  // Don't show any buttons if it's a development extension
+  if (extension.installType !== 'development') {
 
-    chrome.management.get(extensionId, function(extension) {
-    
-      // TODO: Figure out a way to handle properly...
-      if (extension.homepageUrl) {
-        if (buttonIndex === 0) {
-          chrome.tabs.create({ 'url': extension.homepageUrl });
-        } else if (buttonIndex === 1) {
-          if (extension.enabled) {
-            chrome.tabs.create({ 'url': chrome.extension.getURL('changelog.html') + '#' + extensionId });
-          } else {
-            chrome.management.setEnabled(extensionId, true, function() {
-              showEnabledNotification(extension);
-            });
-          }
-        }
-      } else {
-        chrome.management.setEnabled(extensionId, true, function() {
-          showEnabledNotification(extension);
-        });
+    // Add a "Visit website" button if it has one website
+    if (extension.homepageUrl) {
+      options.buttons.push({
+        title: chrome.i18n.getMessage('websiteButtonTitle'),
+        iconUrl: chrome.extension.getURL('images/website_16.png')
+      });
+
+      // And add a "Open changelog" button if the extension is enabled
+      if (extension.enabled) {
+        options.buttons.push({
+          title: chrome.i18n.getMessage('changelogButtonTitle'),
+          iconUrl: chrome.extension.getURL('images/16.png')
+        }); 
       }
-    });
-  });
- 
-  // Clear notification on click
-  chrome.notifications.onClicked.addListener(function(notificationId) {
-    chrome.notifications.clear(notificationId, function(wasCleared){
-      console.log(wasCleared);
-    });
-  });
+    }
 
-  // Show notification
+    // Make the icon gray and add an "Enable" button if the extension is disabled
+    if (!extension.enabled) {
+      options.iconUrl += '?grayscale=true';
+      options.buttons.push({
+        title: chrome.i18n.getMessage('enableButtonTitle'),
+        iconUrl: chrome.extension.getURL('images/16.png')
+      });
+    }
+  }
+
+  // Show the notification
   chrome.notifications.create(extension.id, options, function(){});
-
 }
 
 function showEnabledNotification(extension) {
@@ -90,20 +58,53 @@ function showEnabledNotification(extension) {
     templateType : 'basic',
     title: chrome.i18n.getMessage('updatedExtensionTitle', [extension.name]),
     message: chrome.i18n.getMessage('enabledExtensionMessage', [extension.name]),
-    iconUrl : 'chrome://extension-icon/'+ extension.id +'/128/0'
+    iconUrl : getExtensionIconUrl(extension.id)
   };
+
+  // Show the notification
   chrome.notifications.create(extension.id, options, function(){});
 }
 
 
+// Clear notifications on Click
+chrome.notifications.onClicked.addListener(function(notificationId) {
+  chrome.notifications.clear(notificationId, function(){});
+});
+
+function setEnabledExtension(extensionId) {
+  chrome.management.setEnabled(extensionId, true, function() {
+    chrome.management.get(extensionId, function(extension) {
+      showEnabledNotification(extension);
+    });
+  });
+}
+
+// Handle notifications actions on button Click
+chrome.notifications.onButtonClicked.addListener(function(extensionId, buttonIndex) {
+  chrome.management.get(extensionId, function(extension) {
+    if (extension.homepageUrl) {
+      if (buttonIndex === 0) {
+        chrome.tabs.create({ 'url': extension.homepageUrl });
+      } else if (buttonIndex === 1) {
+        if (extension.enabled) {
+          chrome.tabs.create({ 'url': chrome.extension.getURL('changelog.html') + '#' + extensionId });
+        } else {
+          setEnabledExtension(extensionId);
+        }
+      }
+    } else {
+      setEnabledExtension(extensionId);
+    }
+  });
+});
+
 // Display a Welcome notification
 if (!localStorage._hasDisplayedWelcomeMessage) {
-
   var options = {
     templateType : 'basic',
     title: chrome.i18n.getMessage('welcomeTitle'),
     message: chrome.i18n.getMessage('welcomeText'),
-    iconUrl : 'chrome://extension-icon/'+ chrome.app.getDetails().id +'/128/1'
+    iconUrl : getExtensionIconUrl()
   };
   chrome.notifications.create('welcome', options, function(){
     localStorage._hasDisplayedWelcomeMessage = true;
