@@ -1,0 +1,27 @@
+// Enable an extension
+function enableExtension(extension, callback) {
+  chrome.management.setEnabled(extension.id, true, function() {
+    callback(extension);
+  });
+}
+
+// Show a notification if the current extension version is different from the new one
+function checkExtensionVersion(extension) {
+  var currentVersion = localStorage[extension.id];
+  if (currentVersion && (currentVersion !== extension.version)) {
+    showUpdateNotification(extension, currentVersion);
+  }
+  // Store new version of this extension
+  localStorage[extension.id] = extension.version;
+}
+
+// TODO: Do I need chrome.runtime.onInstalled here?
+// Check and save all installed extensions once.
+chrome.management.getAll(function(extensions) {
+  extensions.forEach(function(extension) {
+    checkExtensionVersion(extension);
+  });
+});
+
+// Listens to when an extension has been installed.
+chrome.management.onInstalled.addListener(checkExtensionVersion);

@@ -1,7 +1,7 @@
 {
    "background": {
       "persistent": false,
-      "scripts": [ "background.js" ]
+      "scripts": [ "notifications.js", "management.js" ]
    },
    "default_locale": "en",
    "description": "__MSG_extDescription__",
@@ -15,7 +15,7 @@
    "version": "2",
    "name": "__MSG_extName__",
    "optional_permissions": [ "https://chrome.google.com/*" ],
-   "permissions": [ "experimental", "management", "notifications" ],
+   "permissions": [ "management", "notifications" ],
 
    "manifest_version": 2
 }

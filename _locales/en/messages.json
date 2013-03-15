@@ -48,8 +48,8 @@
       }
    },
    "updatedExtensionMessage": {
-      "description": "Text displayed in the extension notification. Expects extension name and version to be passed in.",
-      "message": "$extensionName$ has been updated to v.$extensionVersion$.",
+      "description": "Text displayed in the extension notification. Expects extension name, version and old version to be passed in.",
+      "message": "$extensionName$ has been updated to v.$extensionVersion$ from v.$extensionOldVersion$.",
       "placeholders": {
          "extensionName": {
             "content": "$1",
@@ -58,6 +58,10 @@
          "extensionVersion": {
             "content": "$2",
             "example": "2.0"
+         },
+         "extensionOldVersion": {
+            "content": "$3",
+            "example": "1.0"
          }
       }
    },
