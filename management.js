@@ -5,11 +5,11 @@ function enableExtension(extension, callback) {
   });
 }
 
-// Show a notification if the current extension version is different from the new one
+// Show a notification if the extension version has changed
 function checkExtensionVersion(extension) {
   var currentVersion = localStorage[extension.id];
   if (currentVersion && (currentVersion !== extension.version)) {
-    showUpdateNotification(extension, currentVersion);
+    showExtensionUpdateNotification(extension, currentVersion);
   }
   // Store new version of this extension
   localStorage[extension.id] = extension.version;

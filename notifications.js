@@ -14,8 +14,8 @@ function showNotification(notificationId, options) {
   chrome.notifications.create(notificationId, options, function(){});
 }
 
-
-function showUpdateNotification(extension, oldVersion) {
+// Show a notification that an extension has been updated
+function showExtensionUpdateNotification(extension, oldVersion) {
   var options = {
     type : 'basic',
     title: chrome.i18n.getMessage('updatedExtensionTitle', [extension.name]),
@@ -53,7 +53,7 @@ function showUpdateNotification(extension, oldVersion) {
 }
 
 // Show a notification that an extension has been enabled
-function showEnabledNotification(extension) {
+function showExtensionEnabledNotification(extension) {
   var options = {
     type : 'basic',
     title: chrome.i18n.getMessage('updatedExtensionTitle', [extension.name]),
@@ -76,13 +76,13 @@ chrome.notifications.onButtonClicked.addListener(function(extensionId, buttonInd
         chrome.tabs.create({ 'url': extension.homepageUrl });
       } else if (buttonIndex === 1) {
         if (extension.enabled) {
-          chrome.tabs.create({ 'url': chrome.extension.getURL('changelog.html') + '#' + extensionId });
+          chrome.tabs.create({ 'url': chrome.extension.getURL('changelog.html#'+ extensionId) });
         } else {
-          enableExtension(extension, showEnabledNotification);
+          enableExtension(extension, showExtensionEnabledNotification);
         }
       }
     } else {
-      enableExtension(extension, showEnabledNotification);
+      enableExtension(extension, showExtensionEnabledNotification);
     }
   });
 });
