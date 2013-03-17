@@ -1,7 +1,7 @@
 // TODO: To remove
-localStorage.eignhdfgaldabilaaegmdfbajngjmoke = '0';
-localStorage.knmdbhdejcjgpahocbnbbekpaehgghnk = '0';
-localStorage.gighmmpiobklfepjocnamgkkbiglidom = '0';
+//localStorage.eignhdfgaldabilaaegmdfbajngjmoke = '0';
+//localStorage.knmdbhdejcjgpahocbnbbekpaehgghnk = '0';
+//localStorage.gighmmpiobklfepjocnamgkkbiglidom = '0';
 
 // Helper function to return extension Icon Url based on extension Id
 function getExtensionIconUrl(extensionId) {
@@ -36,7 +36,7 @@ function showExtensionUpdateNotification(extension, oldVersion) {
       if (extension.enabled) {
         options.buttons.push({
           title: chrome.i18n.getMessage('changelogButtonTitle'),
-          iconUrl: chrome.extension.getURL('images/16.png')
+          iconUrl: chrome.extension.getURL('images/action_16.png')
         }); 
       }
     }
@@ -45,7 +45,7 @@ function showExtensionUpdateNotification(extension, oldVersion) {
       options.iconUrl += '?grayscale=true';
       options.buttons.push({
         title: chrome.i18n.getMessage('enableButtonTitle'),
-        iconUrl: chrome.extension.getURL('images/16.png')
+        iconUrl: chrome.extension.getURL('images/action_16.png')
       });
     }
   }
