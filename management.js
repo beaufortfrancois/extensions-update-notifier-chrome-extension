@@ -1,5 +1,3 @@
-localStorage.gighmmpiobklfepjocnamgkkbiglidom = '0';
-
 // Enable an extension
 function enableExtension(extension, callback) {
   chrome.management.setEnabled(extension.id, true, function() {
