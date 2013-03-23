@@ -1,11 +1,14 @@
-// Helper function to return extension Icon Url based on extension Id
-function getExtensionIconUrl(extensionId, callback) {
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'chrome://extension-icon/'+ extensionId +'/48/1');
-  xhr.responseType = 'blob';
-  xhr.onload = function() {
+// Helper function which returns a basic notification options object.
+function getNotificationOptions(extensionId) {
+  return {
+    type: 'basic',
+    iconUrl: 'chrome://extension-icon/'+ extensionId +'/48/1'
+  };
+}
+
+// Helper function which returns extension Icon Data Url.
+function getExtensionIconDataUrl(url, callback) {
     var image = new Image();
-    image.src = URL.createObjectURL(xhr.response); 
     image.onload = function() {
       var canvas = document.createElement('canvas');
       canvas.width = 80;
@@ -16,66 +19,60 @@ function getExtensionIconUrl(extensionId, callback) {
       context.drawImage(image, 16, 16, 48, 48);
       callback(canvas.toDataURL());
     } 
-  }
-  xhr.send(null);
+    image.src = url;
 }
 
-// Helper function to show a notification
+// Helper function which displays a notification.
 function showNotification(notificationId, options) {
-  chrome.notifications.create(notificationId, options, function(){});
+  getExtensionIconDataUrl(options.iconUrl, function(iconDataUrl) {
+    options.iconUrl = iconDataUrl;
+    chrome.notifications.create(notificationId, options, function(){});
+  });
 }
 
-// Show a notification that an extension has been updated
+// Show a notification that an extension has been updated.
 function showExtensionUpdateNotification(extension, oldVersion) {
-  getExtensionIconUrl(extension.id, function(iconUrl) {
-    var options = {
-      type : 'basic',
-      title: chrome.i18n.getMessage('updatedExtensionTitle', [extension.name]),
-      message: chrome.i18n.getMessage('updatedExtensionMessage', [extension.name, extension.version, oldVersion]),
-      iconUrl: iconUrl,
-      buttons: []
-    };
-    // Don't show any buttons if it's a development extension
-    if (extension.installType !== 'development') {
+  var options = getNotificationOptions(extension.id);
+  options.title = chrome.i18n.getMessage('updatedExtensionTitle', [extension.name]),
+  options.message = chrome.i18n.getMessage('updatedExtensionMessage', [extension.name, extension.version, oldVersion]),
+  options.buttons = [];
 
-      // Add a "Visit website" button if it has one website
-      if (extension.homepageUrl) {
+  // Don't show any buttons if it's a development extension
+  if (extension.installType !== 'development') {
+
+    // Add a "Visit website" button if it has one website
+    if (extension.homepageUrl) {
+      options.buttons.push({
+        title: chrome.i18n.getMessage('websiteButtonTitle'),
+        iconUrl: chrome.extension.getURL('images/website_16.png')
+      });
+      // And add a "Open changelog" button if the extension is enabled
+      if (extension.enabled) {
         options.buttons.push({
-          title: chrome.i18n.getMessage('websiteButtonTitle'),
-          iconUrl: chrome.extension.getURL('images/website_16.png')
-        });
-        // And add a "Open changelog" button if the extension is enabled
-        if (extension.enabled) {
-          options.buttons.push({
-            title: chrome.i18n.getMessage('changelogButtonTitle'),
-            iconUrl: chrome.extension.getURL('images/action_16.png')
-          }); 
-        }
-      }
-      // Make the icon gray and add an "Enable" button if the extension is disabled
-      if (!extension.enabled) {
-        options.iconUrl += '?grayscale=true';
-        options.buttons.push({
-          title: chrome.i18n.getMessage('enableButtonTitle'),
+          title: chrome.i18n.getMessage('changelogButtonTitle'),
           iconUrl: chrome.extension.getURL('images/action_16.png')
-        });
+        }); 
       }
     }
-    showNotification(extension.id, options);
-  });
+    // Make the icon gray and add an "Enable" button if the extension is disabled
+    if (!extension.enabled) {
+      options.iconUrl += '?grayscale=true';
+      options.buttons.push({
+        title: chrome.i18n.getMessage('enableButtonTitle'),
+        iconUrl: chrome.extension.getURL('images/action_16.png')
+      });
+    }
+  }
+  showNotification(extension.id, options);
 }
 
 // Show a notification that an extension has been enabled
 function showExtensionEnabledNotification(extension) {
-  getExtensionIconUrl(extension.id, function(iconUrl) {
-    var options = {
-      type : 'basic',
-      title: chrome.i18n.getMessage('updatedExtensionTitle', [extension.name]),
-      message: chrome.i18n.getMessage('enabledExtensionMessage', [extension.name]),
-      iconUrl : iconUrl
-    };
-    showNotification(extension.id, options);
-  });
+  var options = getNotificationOptions(extension.id);
+  options.title = chrome.i18n.getMessage('updatedExtensionTitle', [extension.name]);
+  options.message = chrome.i18n.getMessage('enabledExtensionMessage', [extension.name]);
+
+  showNotification(extension.id, options);
 }
 
 // Clear notifications on Click
@@ -105,14 +102,10 @@ chrome.notifications.onButtonClicked.addListener(function(extensionId, buttonInd
 // Display a Welcome notification if this extension is installed for the first time
 chrome.runtime.onInstalled.addListener(function(details) {
   if (details.reason === 'install') {
-    getExtensionIconUrl(chrome.runtime.id, function() {
-      var options = {
-        type : 'basic',
-        title: chrome.i18n.getMessage('welcomeTitle'),
-        message: chrome.i18n.getMessage('welcomeText'),
-        iconUrl : iconUrl
-      };
-      showNotification('welcome', options);
-    });
+    var options = getNotificationOptions(chrome.runtime.id);
+    options.title = chrome.i18n.getMessage('welcomeTitle');
+    options.message = chrome.i18n.getMessage('welcomeText');
+
+    showNotification('welcome', options);
   }
 });
