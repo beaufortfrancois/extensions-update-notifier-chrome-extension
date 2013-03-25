@@ -14,10 +14,19 @@ chrome.management.get(extensionId, function(extension) {
   document.title = chrome.i18n.getMessage('titleChangelogText', [extension.name]);
 });
 
+function toggleChangelogVisibility(visibility) {
+  if (visibility) {
+    showChangelogButton.style.display = 'none';
+    message.style.display = 'none';
+    changelog.style.display = 'block';
+  } else {
+    message.style.display = 'block';
+    changelog.style.display = 'none';
+  }
+}
+
 function showChangelog() {
-  showChangelogButton.style.display = 'none';
-  message.style.display = 'none';
-  changelog.style.display = 'block';
+  toggleChangelogVisibility(true);
 
   // Display loading message.
   message.innerText = chrome.i18n.getMessage('loadingChangelogText');
@@ -32,21 +41,18 @@ function showChangelog() {
     // And only if the word "changelog" is inside, we assume there is a changelog.
     if (text.search(/changelog/i) !== -1) {
       // I trust the Chrome Web Store here ;)
-      changelog.innerHTML = text.substring(text.search(/changelog/i), text.length-6);
+      changelog.innerText = text.substring(text.search(/changelog/i), text.length-6);
     } else {
-      changelog.style.display = 'none';
-      message.style.display = 'block';
-      message.innerText = chrome.i18n.getMessage('messageChangelogText');
+      toggleChangelogVisibility(false);
+      message.innerText = chrome.i18n.getMessage('sorryChangelogText');
     }
   };
   xhr.onerror = function() {
-    changelog.style.display = 'none';
-    message.style.display = 'block';
-    message.innerText = chrome.i18n.getMessage('messageChangelogText');
+    toggleChangelogVisibility(false);
+    message.innerText = chrome.i18n.getMessage('sorryChangelogText');
   };
   xhr.send(null);
 }
-
 
 var permissions = { origins: chrome.runtime.getManifest().optional_permissions };
 

@@ -37,7 +37,7 @@
       "description": "Text displayed in the changelog when additional permissions are requested.",
       "message": "This experimental feature requests an additional permission to the Chrome Web Store."
    },
-   "messageChangelogText": {
+   "sorryChangelogText": {
       "description": "Text displayed in the changelog when there is no changelog provided.",
       "message": "Sorry... there is no changelog available at this time."
    },
