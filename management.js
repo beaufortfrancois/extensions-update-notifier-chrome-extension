@@ -1,18 +1,21 @@
-// Enable an extension
+// Helper function which enables an extension.
 function enableExtension(extension, callback) {
   chrome.management.setEnabled(extension.id, true, function() {
     callback(extension);
   });
 }
 
-// Show a notification if the extension version has changed
+// Show a notification if the extension version has changed.
 function checkExtensionVersion(extension) {
-  var currentVersion = localStorage[extension.id];
-  if (currentVersion && (currentVersion !== extension.version)) {
-    showExtensionUpdateNotification(extension, currentVersion);
+  // Ignore extensions in development.
+  if (extension.installType !== 'development') {
+    var currentVersion = localStorage[extension.id];
+    if (currentVersion && (currentVersion !== extension.version)) {
+      showExtensionUpdateNotification(extension, currentVersion);
+    }
+    // Store new version of this extension.
+    localStorage[extension.id] = extension.version;
   }
-  // Store new version of this extension
-  localStorage[extension.id] = extension.version;
 }
 
 // TODO: Do I need chrome.runtime.onInstalled here?
@@ -23,5 +26,5 @@ chrome.management.getAll(function(extensions) {
   });
 });
 
-// Listens to when an extension has been installed.
+// Listen to when an extension has been installed.
 chrome.management.onInstalled.addListener(checkExtensionVersion);

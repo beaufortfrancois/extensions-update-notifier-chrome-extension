@@ -23,6 +23,7 @@ button {
   min-height: 2em;
   min-width: 4em;
   padding: 1px 6px;
+  margin-top: 24px;
 }
 
 #title {
@@ -43,9 +44,9 @@ button {
   font-size: 12px;
   white-space: pre-wrap;
   margin-bottom: 24px;
+  display: none;
 }
 
-#sorry {
+#message {
   padding: 8px;
-  margin-bottom: 24px;
 }

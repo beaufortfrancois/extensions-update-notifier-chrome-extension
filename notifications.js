@@ -11,9 +11,9 @@ function getExtensionIconDataUrl(url, callback) {
     var image = new Image();
     image.onload = function() {
       var canvas = document.createElement('canvas');
+      var context = canvas.getContext('2d');
       canvas.width = 80;
       canvas.height = 80;
-      var context = canvas.getContext('2d');
       context.fillStyle = '#EEE';
       context.fillRect(0, 0, 80, 80);
       context.drawImage(image, 16, 16, 48, 48);
@@ -26,47 +26,44 @@ function getExtensionIconDataUrl(url, callback) {
 function showNotification(notificationId, options) {
   getExtensionIconDataUrl(options.iconUrl, function(iconDataUrl) {
     options.iconUrl = iconDataUrl;
-    chrome.notifications.create(notificationId, options, function(){});
+    chrome.notifications.create(notificationId, options, function(){ });
   });
 }
 
-// Show a notification that an extension has been updated.
+// Show a notification when an extension has been updated.
 function showExtensionUpdateNotification(extension, oldVersion) {
   var options = getNotificationOptions(extension.id);
   options.title = chrome.i18n.getMessage('updatedExtensionTitle', [extension.name]),
-  options.message = chrome.i18n.getMessage('updatedExtensionMessage', [extension.name, extension.version, oldVersion]),
+  options.message = chrome.i18n.getMessage('updatedExtensionMessage',
+      [extension.name, extension.version, oldVersion]),
   options.buttons = [];
 
-  // Don't show any buttons if it's a development extension
-  if (extension.installType !== 'development') {
-
-    // Add a "Visit website" button if it has one website
-    if (extension.homepageUrl) {
+  // Add a "Visit website" button if it has one website.
+  if (extension.homepageUrl) {
+    options.buttons.push({
+      title: chrome.i18n.getMessage('websiteButtonTitle'),
+      iconUrl: chrome.extension.getURL('images/website_16.png')
+    });
+    // And add a "Open changelog" button if the extension is enabled.
+    if (extension.enabled) {
       options.buttons.push({
-        title: chrome.i18n.getMessage('websiteButtonTitle'),
-        iconUrl: chrome.extension.getURL('images/website_16.png')
-      });
-      // And add a "Open changelog" button if the extension is enabled
-      if (extension.enabled) {
-        options.buttons.push({
-          title: chrome.i18n.getMessage('changelogButtonTitle'),
-          iconUrl: chrome.extension.getURL('images/action_16.png')
-        }); 
-      }
-    }
-    // Make the icon gray and add an "Enable" button if the extension is disabled
-    if (!extension.enabled) {
-      options.iconUrl += '?grayscale=true';
-      options.buttons.push({
-        title: chrome.i18n.getMessage('enableButtonTitle'),
+        title: chrome.i18n.getMessage('changelogButtonTitle'),
         iconUrl: chrome.extension.getURL('images/action_16.png')
-      });
+      }); 
     }
+  }
+  // Make the icon gray and add an "Enable" button if the extension is disabled.
+  if (!extension.enabled) {
+    options.iconUrl += '?grayscale=true';
+    options.buttons.push({
+      title: chrome.i18n.getMessage('enableButtonTitle'),
+      iconUrl: chrome.extension.getURL('images/action_16.png')
+    });
   }
   showNotification(extension.id, options);
 }
 
-// Show a notification that an extension has been enabled
+// Show a notification when an extension has been explicitely enabled.
 function showExtensionEnabledNotification(extension) {
   var options = getNotificationOptions(extension.id);
   options.title = chrome.i18n.getMessage('updatedExtensionTitle', [extension.name]);
@@ -75,12 +72,7 @@ function showExtensionEnabledNotification(extension) {
   showNotification(extension.id, options);
 }
 
-// Clear notifications on Click
-chrome.notifications.onClicked.addListener(function(notificationId) {
-  chrome.notifications.clear(notificationId, function(){});
-});
-
-// Handle notifications actions on button Click
+// Handle notifications actions on button Click.
 chrome.notifications.onButtonClicked.addListener(function(extensionId, buttonIndex) {
   chrome.management.get(extensionId, function(extension) {
     if (extension.homepageUrl) {
@@ -99,7 +91,12 @@ chrome.notifications.onButtonClicked.addListener(function(extensionId, buttonInd
   });
 });
 
-// Display a Welcome notification if this extension is installed for the first time
+// Clear notification if user clicks on it.
+chrome.notifications.onClicked.addListener(function(notificationId) {
+  chrome.notifications.clear(notificationId, function(){ });
+});
+
+// Display a Welcome notification if this extension is installed for the first time.
 chrome.runtime.onInstalled.addListener(function(details) {
   if (details.reason === 'install') {
     var options = getNotificationOptions(chrome.runtime.id);
