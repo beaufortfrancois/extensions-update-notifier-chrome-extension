@@ -1,56 +1,40 @@
 var changelog = document.getElementById('changelog');
-
 var message = document.getElementById('message');
-message.innerText = chrome.i18n.getMessage('requestPermissionsText');
-
 var showChangelogButton = document.getElementById('showChangelogButton');
-showChangelogButton.innerText = chrome.i18n.getMessage('changelogButtonTitle');
 
-var extension = null;
 var extensionId = window.location.hash.substr(1);
 
-chrome.management.get(extensionId, function(extension) {
-  document.getElementById('title').textContent = extension.name;
-  document.title = chrome.i18n.getMessage('titleChangelogText', [extension.name]);
-});
-
-function toggleChangelogVisibility(visibility) {
-  if (visibility) {
-    showChangelogButton.style.display = 'none';
-    message.style.display = 'none';
-    changelog.style.display = 'block';
-  } else {
-    message.style.display = 'block';
-    changelog.style.display = 'none';
-  }
+function showSorryMessage() {
+  changelog.style.display = 'none';
+  message.style.display = 'block';
+  message.innerText = chrome.i18n.getMessage('sorryMessageText');
 }
 
+// Show captured changelog from the Chrome Web Store.
 function showChangelog() {
-  toggleChangelogVisibility(true);
-
-  // Display loading message.
-  message.innerText = chrome.i18n.getMessage('loadingChangelogText');
+  // Show/hide DOM Elements.
+  showChangelogButton.style.display = 'none';
+  message.style.display = 'none';
+  changelog.style.display = 'block';
 
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://chrome.google.com/webstore/detail/' + extensionId, true);
+  xhr.onloadstart = function() {
+    message.innerText = chrome.i18n.getMessage('loadingMessageText');
+  }
   xhr.onload = function() {
-    var r = xhr.response;
-    // Check what's inside <pre></pre> tags.
-    var text = r.substring(r.search('<pre '), r.search('</pre>')+6);
+    // Retrieve what's inside <pre></pre>.
+    var text = xhr.response.substring(xhr.response.search('<pre '),
+        xhr.response.search('</pre>')+6);
 
     // And only if the word "changelog" is inside, we assume there is a changelog.
     if (text.search(/changelog/i) !== -1) {
-      // I trust the Chrome Web Store here ;)
       changelog.innerText = text.substring(text.search(/changelog/i), text.length-6);
     } else {
-      toggleChangelogVisibility(false);
-      message.innerText = chrome.i18n.getMessage('sorryChangelogText');
+      showSorryMessage();
     }
   };
-  xhr.onerror = function() {
-    toggleChangelogVisibility(false);
-    message.innerText = chrome.i18n.getMessage('sorryChangelogText');
-  };
+  xhr.onerror = showSorryMessage;
   xhr.send(null);
 }
 
@@ -65,9 +49,21 @@ showChangelogButton.addEventListener('click', function() {
   });
 });
 
-// Show changelog if user already granted permissions.
-chrome.permissions.contains(permissions, function(result) {
-  if (result) {
-    showChangelog();
-  }
-});
+window.onload = function() {
+  message.innerText = chrome.i18n.getMessage('requestPermissionsText');
+  showChangelogButton.innerText = chrome.i18n.getMessage('showChangelogButtonText');
+
+  chrome.management.get(extensionId, function(extension) {
+    var title = chrome.i18n.getMessage('titleChangelogText', [extension.name]);
+    document.getElementById('title').innerText = title;
+    document.title = title;
+  });
+
+  // Show changelog if user already granted permissions.
+  chrome.permissions.contains(permissions, function(result) {
+    if (result) {
+      showChangelog();
+    }
+  });
+
+}

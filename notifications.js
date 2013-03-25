@@ -1,8 +1,10 @@
+var iconSize = 48;
+
 // Helper function which returns a basic notification options object.
 function getNotificationOptions(extensionId) {
   return {
     type: 'basic',
-    iconUrl: 'chrome://extension-icon/'+ extensionId +'/48/1'
+    iconUrl: 'chrome://extension-icon/'+ extensionId +'/'+ iconSize +'/1'
   };
 }
 
@@ -11,12 +13,15 @@ function getExtensionIconDataUrl(url, callback) {
     var image = new Image();
     image.onload = function() {
       var canvas = document.createElement('canvas');
-      var context = canvas.getContext('2d');
       canvas.width = 80;
       canvas.height = 80;
+
+      var context = canvas.getContext('2d');
       context.fillStyle = '#EEE';
       context.fillRect(0, 0, 80, 80);
-      context.drawImage(image, 16, 16, 48, 48);
+
+      var iconPos = (80 - iconSize) / 2;
+      context.drawImage(image, iconPos, iconPos, iconSize, iconSize);
       callback(canvas.toDataURL());
     } 
     image.src = url;
@@ -39,7 +44,7 @@ function showExtensionUpdateNotification(extension, oldVersion) {
   options.buttons = [];
 
   // Add a "Visit website" button if it has one website.
-  if (extension.homepageUrl) {
+  if (extension.homepageUrl !== '') {
     options.buttons.push({
       title: chrome.i18n.getMessage('websiteButtonTitle'),
       iconUrl: chrome.extension.getURL('images/website_16.png')
