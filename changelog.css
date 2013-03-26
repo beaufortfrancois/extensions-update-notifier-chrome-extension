@@ -5,6 +5,7 @@ body {
   margin-left: 80px;
   -webkit-margin-start: 155px;
   font-size: 75%;
+  width: 800px;
 }
 
 button {
@@ -23,7 +24,18 @@ button {
   min-height: 2em;
   min-width: 4em;
   padding: 1px 6px;
-  margin-top: 24px;
+  margin-top: 12px;
+  cursor: default;
+}
+
+.sorry {
+  background-color: rgb(249, 237, 190);
+  border: 1px solid rgb(240, 195, 109);
+  border-radius: 2px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  display: inline-block;
+  padding: 8px 10px;
+  text-align: center;
 }
 
 #title {
@@ -33,20 +45,13 @@ button {
   font-weight: normal;
   line-height: 1;
   border-bottom: 1px solid #EEE;
-  width: 800px;
 }
 
 #changelog {
-  width: 800px;
   font-family: monospace;
-  background-color: white;
   padding: 12px;
   font-size: 12px;
   white-space: pre-wrap;
   margin-bottom: 24px;
   display: none;
-}
-
-#message {
-  padding: 8px;
 }

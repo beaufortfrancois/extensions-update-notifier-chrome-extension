@@ -10,7 +10,7 @@ function getNotificationOptions(extensionId) {
 
 // Helper function which returns extension Icon Data Url.
 function getExtensionIconDataUrl(url, callback) {
-    var image = new Image();
+    var image = new Image(iconSize, iconSize);
     image.onload = function() {
       var canvas = document.createElement('canvas');
       canvas.width = 80;
@@ -78,7 +78,7 @@ function showExtensionEnabledNotification(extension) {
 }
 
 // Handle notifications actions on button Click.
-chrome.notifications.onButtonClicked.addListener(function(extensionId, buttonIndex) {
+function onNotificationsButtonClicked(extensionId, buttonIndex) {
   chrome.management.get(extensionId, function(extension) {
     if (extension.homepageUrl) {
       if (buttonIndex === 0) {
@@ -94,15 +94,15 @@ chrome.notifications.onButtonClicked.addListener(function(extensionId, buttonInd
       enableExtension(extension, showExtensionEnabledNotification);
     }
   });
-});
+}
 
 // Clear notification if user clicks on it.
-chrome.notifications.onClicked.addListener(function(notificationId) {
+function onNotificationsClicked(notificationId) {
   chrome.notifications.clear(notificationId, function(){ });
-});
+}
 
-// Display a Welcome notification if this extension is installed for the first time.
 chrome.runtime.onInstalled.addListener(function(details) {
+  // Display a Welcome notification if this extension is installed for the first time.
   if (details.reason === 'install') {
     var options = getNotificationOptions(chrome.runtime.id);
     options.title = chrome.i18n.getMessage('welcomeTitle');
@@ -110,4 +110,7 @@ chrome.runtime.onInstalled.addListener(function(details) {
 
     showNotification('welcome', options);
   }
+  // Register all notifications event listeners.
+  chrome.notifications.onButtonClicked.addListener(onNotificationsButtonClicked);
+  chrome.notifications.onClicked.addListener(onNotificationsClicked);
 });

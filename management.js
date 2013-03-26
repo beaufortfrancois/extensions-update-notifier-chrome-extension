@@ -18,13 +18,13 @@ function checkExtensionVersion(extension) {
   }
 }
 
-// TODO: Do I need chrome.runtime.onInstalled here?
-// Check and save all installed extensions once.
-chrome.management.getAll(function(extensions) {
-  extensions.forEach(function(extension) {
-    checkExtensionVersion(extension);
+chrome.runtime.onInstalled.addListener(function() {
+  // Check and save all installed extensions once.
+  chrome.management.getAll(function(extensions) {
+    extensions.forEach(function(extension) {
+      checkExtensionVersion(extension);
+    });
   });
+  // Listen to when an extension is installed.
+  chrome.management.onInstalled.addListener(checkExtensionVersion);
 });
-
-// Listen to when an extension has been installed.
-chrome.management.onInstalled.addListener(checkExtensionVersion);

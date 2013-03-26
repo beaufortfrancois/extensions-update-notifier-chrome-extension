@@ -7,6 +7,7 @@ var extensionId = window.location.hash.substr(1);
 function showSorryMessage() {
   changelog.style.display = 'none';
   message.style.display = 'block';
+  message.classList.add('sorry');
   message.innerText = chrome.i18n.getMessage('sorryMessageText');
 }
 
