@@ -9,7 +9,7 @@
    },
    "enabledExtensionMessage": {
       "description": "Text displayed in the extension enabled notification. Expects extension name to be passed in.",
-      "message": "$extensionName$ a été activée avec succès.",
+      "message": "$extensionName$ a été activé avec succès.",
       "placeholders": {
          "extensionName": {
             "content": "$1",
@@ -23,11 +23,11 @@
    },
    "extName": {
       "description": "Extension name.",
-      "message": "Notificateur de mises à jour d'extensions"
+      "message": "Notifications de mises à jour d'extensions"
    },
    "websiteButtonTitle": {
       "description": "Text displayed in the extension update notification to visit the website.",
-      "message": "Visiter le site web"
+      "message": "Accéder au site Web"
    },
    "loadingMessageText": {
       "description": "Text displayed in the changelog when retrieving changelog.",
@@ -35,7 +35,7 @@
    },
    "requestPermissionsText": {
       "description": "Text displayed in the changelog when additional permissions are requested.",
-      "message": "Cette fonctionalité expérimentale requiert une permission supplémentaire au Chrome Web Store."
+      "message": "Cette fonctionnalité expérimentale requiert une permission supplémentaire au Chrome Web Store."
    },
    "showChangelogButtonText": {
       "description": "Text displayed in the changelog button to request permissions.",
@@ -85,10 +85,10 @@
    },
    "welcomeText": {
       "description": "Text displayed in the welcome notification.",
-      "message": "Tu seras prévenu dès qu'une extension est mise à jour."
+      "message": "Vous serez prévenus dès qu'une extension est mise à jour."
    },
    "welcomeTitle": {
       "description": "Title displayed in the welcome notification.",
-      "message": "Sois rassuré"
+      "message": "Soyez assuré"
    }
 }
