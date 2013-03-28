@@ -1,15 +1,15 @@
 {
    "changelogButtonTitle": {
       "description": "Text displayed in the extension notification to open changelog page.",
-      "message": "Show changelog (experimental)"
+      "message": "Afficher le changelog (expérimental)"
    },
    "enableButtonTitle": {
       "description": "Text displayed in the extension notification to enable the extension.",
-      "message": "Enable"
+      "message": "Activer"
    },
    "enabledExtensionMessage": {
       "description": "Text displayed in the extension enabled notification. Expects extension name to be passed in.",
-      "message": "$extensionName$ has been successfully enabled.",
+      "message": "$extensionName$ a été activée avec succès.",
       "placeholders": {
          "extensionName": {
             "content": "$1",
@@ -19,35 +19,35 @@
    },
    "extDescription": {
       "description": "Extension description.",
-      "message": "Show a notification when an extension is updated."
+      "message": "Affiche une notification quand une extension est mise à jour."
    },
    "extName": {
       "description": "Extension name.",
-      "message": "Extensions Update Notifier"
+      "message": "Notificateur de mises à jour d'extensions"
    },
    "websiteButtonTitle": {
       "description": "Text displayed in the extension update notification to visit the website.",
-      "message": "Visit website"
+      "message": "Visiter le site web"
    },
    "loadingMessageText": {
       "description": "Text displayed in the changelog when retrieving changelog.",
-      "message": "Loading..."
+      "message": "Chargement..."
    },
    "requestPermissionsText": {
       "description": "Text displayed in the changelog when additional permissions are requested.",
-      "message": "This experimental feature requests an additional permission to the Chrome Web Store."
+      "message": "Cette fonctionalité expérimentale requiert une permission supplémentaire au Chrome Web Store."
    },
    "showChangelogButtonText": {
       "description": "Text displayed in the changelog button to request permissions.",
-      "message": "Show changelog"
+      "message": "Afficher le changelog"
    },
    "sorryMessageText": {
       "description": "Text displayed in the changelog when there is no changelog provided.",
-      "message": "Sorry... there is no changelog available at this time."
+      "message": "Désolé... le changelog n'est pas disponible pour le moment."
    },
    "titleChangelogText": {
       "description": "Title displayed in the changelog.",
-      "message": "$extensionName$ Changelog",
+      "message": "Changelog de $extensionName$",
       "placeholders": {
          "extensionName": {
             "content": "$1",
@@ -57,7 +57,7 @@
    },
    "updatedExtensionMessage": {
       "description": "Text displayed in the extension notification. Expects extension name, old version and version to be passed in.",
-      "message": "$extensionName$ has been updated from v.$extensionOldVersion$ to v.$extensionVersion$.",
+      "message": "$extensionName$ a été mis à jour de v.$extensionOldVersion$ à v.$extensionVersion$.",
       "placeholders": {
          "extensionName": {
             "content": "$1",
@@ -75,7 +75,7 @@
    },
    "updatedExtensionTitle": {
       "description": "Title displayed in the extension notification. Expects extension name to be passed in.",
-      "message": "$extensionName$ Update",
+      "message": "$extensionName$ a été mis à jour",
       "placeholders": {
          "extensionName": {
             "content": "$1",
@@ -85,10 +85,10 @@
    },
    "welcomeText": {
       "description": "Text displayed in the welcome notification.",
-      "message": "You'll be notified as soon as an extension is updated."
+      "message": "Tu seras prévenu dès qu'une extension est mise à jour."
    },
    "welcomeTitle": {
       "description": "Title displayed in the welcome notification.",
-      "message": "Rest assured"
+      "message": "Sois rassuré"
    }
 }

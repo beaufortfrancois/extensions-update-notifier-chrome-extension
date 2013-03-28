@@ -10,21 +10,21 @@ function getNotificationOptions(extensionId) {
 
 // Helper function which returns extension Icon Data Url.
 function getExtensionIconDataUrl(url, callback) {
-    var image = new Image(iconSize, iconSize);
-    image.onload = function() {
-      var canvas = document.createElement('canvas');
-      canvas.width = 80;
-      canvas.height = 80;
+  var image = new Image(iconSize, iconSize);
+  image.onload = function() {
+    var canvas = document.createElement('canvas');
+    canvas.width = 80;
+    canvas.height = 80;
 
-      var context = canvas.getContext('2d');
-      context.fillStyle = '#EEE';
-      context.fillRect(0, 0, 80, 80);
+    var context = canvas.getContext('2d');
+    context.fillStyle = '#EEE';
+    context.fillRect(0, 0, 80, 80);
 
-      var iconPos = (80 - iconSize) / 2;
-      context.drawImage(image, iconPos, iconPos, iconSize, iconSize);
-      callback(canvas.toDataURL());
-    } 
-    image.src = url;
+    var iconPos = (80 - iconSize) / 2;
+    context.drawImage(image, iconPos, iconPos, iconSize, iconSize);
+    callback(canvas.toDataURL());
+  } 
+  image.src = url;
 }
 
 // Helper function which displays a notification.
@@ -49,7 +49,7 @@ function showExtensionUpdateNotification(extension, oldVersion) {
       title: chrome.i18n.getMessage('websiteButtonTitle'),
       iconUrl: chrome.extension.getURL('images/website_16.png')
     });
-    // And add a "Open changelog" button if the extension is enabled.
+    // And add a "Show changelog" button if the extension is enabled.
     if (extension.enabled) {
       options.buttons.push({
         title: chrome.i18n.getMessage('changelogButtonTitle'),
