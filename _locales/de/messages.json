@@ -1,0 +1,94 @@
+{
+   "changelogButtonTitle": {
+      "description": "Text displayed in the extension notification to open changelog page.",
+      "message": "Zeige Changelog (experimentell)"
+   },
+   "enableButtonTitle": {
+      "description": "Text displayed in the extension notification to enable the extension.",
+      "message": "Aktivieren"
+   },
+   "enabledExtensionMessage": {
+      "description": "Text displayed in the extension enabled notification. Expects extension name to be passed in.",
+      "message": "$extensionName$ wurde erfolgreich aktiviert.",
+      "placeholders": {
+         "extensionName": {
+            "content": "$1",
+            "example": "My Chrome Extension"
+         }
+       }
+   },
+   "extDescription": {
+      "description": "Extension description.",
+      "message": "Zeige eine Benachrichtigung, wenn eine Erweiterung aktualisiert wurde."
+   },
+   "extName": {
+      "description": "Extension name.",
+      "message": "Extensions Update Notifier"
+   },
+   "websiteButtonTitle": {
+      "description": "Text displayed in the extension update notification to visit the website.",
+      "message": "Webseite besuchen"
+   },
+   "loadingMessageText": {
+      "description": "Text displayed in the changelog when retrieving changelog.",
+      "message": "Lade..."
+   },
+   "requestPermissionsText": {
+      "description": "Text displayed in the changelog when additional permissions are requested.",
+      "message": "Dieses experimentelle Feature benötigt eine weitere Berechtigung zum Chrome Web Store."
+   },
+   "showChangelogButtonText": {
+      "description": "Text displayed in the changelog button to request permissions.",
+      "message": "Zeige Changelog"
+   },
+   "sorryMessageText": {
+      "description": "Text displayed in the changelog when there is no changelog provided.",
+      "message": "Sorry... es steht derzeit kein Changelog zur Verfügung"
+   },
+   "titleChangelogText": {
+      "description": "Title displayed in the changelog.",
+      "message": "$extensionName$ Changelog",
+      "placeholders": {
+         "extensionName": {
+            "content": "$1",
+            "example": "My Chrome Extension"
+         }
+      }
+   },
+   "updatedExtensionMessage": {
+      "description": "Text displayed in the extension notification. Expects extension name, old version and version to be passed in.",
+      "message": "$extensionName$ wurde von v.$extensionOldVersion$ auf v.$extensionVersion$ aktualisiert.",
+      "placeholders": {
+         "extensionName": {
+            "content": "$1",
+            "example": "My Chrome Extension"
+         },
+         "extensionOldVersion": {
+            "content": "$2",
+            "example": "1.0"
+         },
+         "extensionVersion": {
+            "content": "$3",
+            "example": "2.0"
+         }
+      }
+   },
+   "updatedExtensionTitle": {
+      "description": "Title displayed in the extension notification. Expects extension name to be passed in.",
+      "message": "$extensionName$ Update",
+      "placeholders": {
+         "extensionName": {
+            "content": "$1",
+            "example": "My Chrome Extension"
+         }
+      }
+   },
+   "welcomeText": {
+      "description": "Text displayed in the welcome notification.",
+      "message": "Du bekommst nun Benachrichtigungen angezeigt, sobald eine Erweiterung aktualisiert wurde.."
+   },
+   "welcomeTitle": {
+      "description": "Title displayed in the welcome notification.",
+      "message": "Bleibe beruhigt."
+   }
+}
