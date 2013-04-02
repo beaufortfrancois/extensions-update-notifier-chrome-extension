@@ -40,7 +40,7 @@ function showExtensionUpdateNotification(extension, oldVersion) {
   var options = getNotificationOptions(extension.id);
   options.title = chrome.i18n.getMessage('updatedExtensionTitle', [extension.name]),
   options.message = chrome.i18n.getMessage('updatedExtensionMessage',
-      [extension.name, extension.version, oldVersion]),
+      [extension.name, oldVersion, extension.version]),
   options.buttons = [];
 
   // Add a "Visit website" button if it has one website.
