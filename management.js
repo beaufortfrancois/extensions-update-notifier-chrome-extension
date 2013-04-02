@@ -24,5 +24,6 @@ chrome.management.getAll(function(extensions) {
     checkExtensionVersion(extension);
   });
 });
-// Listen to when an extension is installed.
+
+// Register a listener to when an extension is installed.
 chrome.management.onInstalled.addListener(checkExtensionVersion);

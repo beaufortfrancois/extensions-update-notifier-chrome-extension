@@ -110,7 +110,8 @@ chrome.runtime.onInstalled.addListener(function(details) {
 
     showNotification('welcome', options);
   }
-  // Register all notifications event listeners.
-  chrome.notifications.onButtonClicked.addListener(onNotificationsButtonClicked);
-  chrome.notifications.onClicked.addListener(onNotificationsClicked);
 });
+
+// Register all notifications event listeners.
+chrome.notifications.onButtonClicked.addListener(onNotificationsButtonClicked);
+chrome.notifications.onClicked.addListener(onNotificationsClicked);
