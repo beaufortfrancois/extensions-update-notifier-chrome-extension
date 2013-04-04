@@ -19,7 +19,7 @@ function showChangelog() {
   changelog.style.display = 'block';
 
   var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://chrome.google.com/webstore/detail/' + extensionId, true);
+  xhr.open('GET', 'https://chrome.google.com/webstore/detail/'+ extensionId, true);
   xhr.onloadstart = function() {
     message.innerText = chrome.i18n.getMessage('loadingMessageText');
   }
