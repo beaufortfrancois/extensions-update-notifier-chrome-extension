@@ -10,10 +10,9 @@
       "48": "images/48.png",
       "128": "images/128.png"
    },
-   "version": "2",
+   "manifest_version": 2,
    "name": "__MSG_extName__",
    "optional_permissions": [ "https://chrome.google.com/*" ],
    "permissions": [ "management", "notifications" ],
-
-   "manifest_version": 2
+   "version": "2"
 }
