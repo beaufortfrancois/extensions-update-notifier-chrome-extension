@@ -1,4 +1,6 @@
+// TODO: Handle 2x images
 var iconSize = 48;
+var notificationSize = 80;
 
 // Helper function which returns a basic notification options object.
 function getNotificationOptions(extensionId) {
@@ -10,21 +12,20 @@ function getNotificationOptions(extensionId) {
 
 // Helper function which returns extension Icon Data Url.
 function getExtensionIconDataUrl(url, callback) {
-  var image = new Image(iconSize, iconSize);
-  image.onload = function() {
+  var icon = new Image();
+  icon.onload = function() {
     var canvas = document.createElement('canvas');
-    canvas.width = 80;
-    canvas.height = 80;
+    canvas.width = canvas.height = notificationSize;
 
     var context = canvas.getContext('2d');
     context.fillStyle = '#EEE';
-    context.fillRect(0, 0, 80, 80);
+    context.fillRect(0, 0, canvas.width, canvas.height);
 
-    var iconPos = (80 - iconSize) / 2;
-    context.drawImage(image, iconPos, iconPos, iconSize, iconSize);
-    callback(canvas.toDataURL());
+    var iconLeft = iconTop = (notificationSize - iconSize) / 2;
+    context.drawImage(icon, iconLeft, iconTop);
+    callback(canvas.toDataURL("image/png"));
   } 
-  image.src = url;
+  icon.src = url;
 }
 
 // Helper function which displays a notification.
