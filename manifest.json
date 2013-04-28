@@ -11,6 +11,7 @@
       "128": "images/128.png"
    },
    "manifest_version": 2,
+   "minimum_chrome_version": "28",
    "name": "__MSG_extName__",
    "optional_permissions": [ "https://chrome.google.com/*" ],
    "permissions": [ "management", "notifications" ],
