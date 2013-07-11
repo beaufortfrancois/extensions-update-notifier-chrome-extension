@@ -30,7 +30,7 @@ function showChangelog() {
 
     // And only if the word "changelog" is inside, we assume there is a changelog.
     if (text.search(/changelog/i) !== -1) {
-      changelog.innerText = text.substring(text.search(/changelog/i), text.length-6);
+      changelog.innerHTML = text.substring(text.search(/changelog/i), text.length-6);
     } else {
       showSorryMessage();
     }
