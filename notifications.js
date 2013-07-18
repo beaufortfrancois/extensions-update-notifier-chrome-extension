@@ -71,11 +71,14 @@ function showExtensionUpdateNotification(extension, oldVersion) {
 
 // Show a notification when an extension has been explicitely enabled.
 function showExtensionEnabledNotification(extension) {
-  var options = getNotificationOptions(extension.id);
-  options.title = chrome.i18n.getMessage('updatedExtensionTitle', [extension.name]);
-  options.message = chrome.i18n.getMessage('enabledExtensionMessage', [extension.name]);
+  // Clear notification first before recreating a new one.
+  chrome.notifications.clear(extension.id, function() { 
+    var options = getNotificationOptions(extension.id);
+    options.title = chrome.i18n.getMessage('updatedExtensionTitle', [extension.name]);
+    options.message = chrome.i18n.getMessage('enabledExtensionMessage', [extension.name]);
 
-  showNotification(extension.id, options);
+    showNotification(extension.id, options);
+  });
 }
 
 // Handle notifications actions on button Click.
