@@ -43,16 +43,6 @@ function getNotificationId(extension) {
 
 // Show a notification when an extension has been updated.
 function showExtensionUpdateNotification(extension, oldVersion) {
-  var notificationId = getNotificationId(extension);
-
-  // If the user has already seen this notification, don't show it.
-  var show = true;
-  chrome.storage.sync.get(notificationId, function(results) {
-    show = (results[notificationId] !== 'closedByUser');
-  });
-  if (!show)
-    return
-
   var options = getNotificationOptions(extension.id);
   options.title = chrome.i18n.getMessage('updatedExtensionTitle', [extension.name]),
   options.message = chrome.i18n.getMessage('updatedExtensionMessage',

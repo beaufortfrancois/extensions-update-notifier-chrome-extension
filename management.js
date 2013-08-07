@@ -5,13 +5,19 @@ function enableExtension(extension, callback) {
   });
 }
 
-// Show a notification if the extension version has changed.
+// Check if the extension has been updated.
 function checkExtensionVersion(extension) {
   // Ignore extensions in development.
   if (extension.installType !== 'development') {
+    // Show a notification if the extension version has changed.
     var currentVersion = localStorage[extension.id];
     if (currentVersion && (currentVersion !== extension.version)) {
-      showExtensionUpdateNotification(extension, currentVersion);
+      // And if the user hasn't already seen this notification.
+      var notificationId = getNotificationId(extension);
+      chrome.storage.sync.get(notificationId, function(results) {
+        if (results[notificationId] !== 'closedByUser')
+          showExtensionUpdateNotification(extension, currentVersion);
+      });
     }
     // Store new version of this extension.
     localStorage[extension.id] = extension.version;
