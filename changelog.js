@@ -30,14 +30,14 @@ function showChangelog() {
 
     // If the word "changelog" is inside, we assume there is a changelog.
     if (text.search(/changelog/i) !== -1) {
-      changelog.innerHTML = text.substring(text.search(/changelog/i), text.length-6);
+      changelog.innerHTML = text.substring(text.search(/changelog/i), text.length);
     // If the version number is inside, we also assume there is a changelog.
     } else if (text.indexOf(localStorage[extensionId]) !== -1) {
         var index = text.indexOf(localStorage[extensionId]);
         while (text[index].charCodeAt(0) !== 10 && index >= 0) {
             index--;
         }
-        changelog.innerHTML = text.substring(index, text.length-6);
+        changelog.innerHTML = text.substring(index, text.length);
     } else {
       showSorryMessage();
     }
@@ -51,9 +51,8 @@ var permissions = { origins: chrome.runtime.getManifest().optional_permissions }
 // Request permissions when user clicks on Request button.
 showChangelogButton.addEventListener('click', function() {
   chrome.permissions.request(permissions, function(hasGranted) {
-    if (hasGranted) {
+    if (hasGranted)
       showChangelog();
-    }
   });
 });
 
@@ -69,9 +68,8 @@ window.onload = function() {
 
   // Show changelog if user already granted permissions.
   chrome.permissions.contains(permissions, function(result) {
-    if (result) {
+    if (result)
       showChangelog();
-    }
   });
 
 }

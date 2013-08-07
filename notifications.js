@@ -36,8 +36,23 @@ function showNotification(notificationId, options) {
   });
 }
 
+// Helper function to create notification Id
+function getNotificationId(extension) {
+  return extension.id + extension.version;
+}
+
 // Show a notification when an extension has been updated.
 function showExtensionUpdateNotification(extension, oldVersion) {
+  var notificationId = getNotificationId(extension);
+
+  // If the user has already seen this notification, don't show it.
+  var show = true;
+  chrome.storage.sync.get(notificationId, function(results) {
+    show = (results[notificationId] !== 'closedByUser');
+  });
+  if (!show)
+    return
+
   var options = getNotificationOptions(extension.id);
   options.title = chrome.i18n.getMessage('updatedExtensionTitle', [extension.name]),
   options.message = chrome.i18n.getMessage('updatedExtensionMessage',
@@ -66,30 +81,32 @@ function showExtensionUpdateNotification(extension, oldVersion) {
       iconUrl: chrome.extension.getURL('images/action_16.png')
     });
   }
-  showNotification(extension.id, options);
+  showNotification(getNotificationId(extension), options);
 }
 
 // Show a notification when an extension has been explicitely enabled.
 function showExtensionEnabledNotification(extension) {
+  var notificationId = getNotificationId(extension);
   // Clear notification first before recreating a new one.
-  chrome.notifications.clear(extension.id, function() { 
+  chrome.notifications.clear(notificationId, function() {
     var options = getNotificationOptions(extension.id);
     options.title = chrome.i18n.getMessage('updatedExtensionTitle', [extension.name]);
     options.message = chrome.i18n.getMessage('enabledExtensionMessage', [extension.name]);
 
-    showNotification(extension.id, options);
+    showNotification(notificationId, options);
   });
 }
 
 // Handle notifications actions on button Click.
-function onNotificationsButtonClicked(extensionId, buttonIndex) {
+function onNotificationsButtonClicked(notificationId, buttonIndex) {
+  var extensionId = notificationId.substr(0, 32);
   chrome.management.get(extensionId, function(extension) {
     if (extension.homepageUrl) {
       if (buttonIndex === 0) {
-        chrome.tabs.create({ 'url': extension.homepageUrl });
+        chrome.tabs.create({ url: extension.homepageUrl });
       } else if (buttonIndex === 1) {
         if (extension.enabled) {
-          chrome.tabs.create({ 'url': chrome.extension.getURL('changelog.html#'+ extensionId) });
+          chrome.tabs.create({ url: chrome.extension.getURL('changelog.html#'+ extensionId) });
         } else {
           enableExtension(extension, showExtensionEnabledNotification);
         }
@@ -102,10 +119,27 @@ function onNotificationsButtonClicked(extensionId, buttonIndex) {
 
 // Clear notification if user clicks on it.
 function onNotificationsClicked(notificationId) {
-  chrome.notifications.clear(notificationId, function(){ });
+  chrome.notifications.clear(notificationId, function() { });
 }
 
-chrome.runtime.onInstalled.addListener(function(details) {
+// Warn the others that this notification has been closed by the user.
+function onNotificationsClosed(notificationId, byUser) {
+  if (byUser) {
+    var closedNotification = {};
+    closedNotification[notificationId] = 'closedByUser';
+    chrome.storage.sync.set(closedNotification);
+  }
+}
+
+// Close notification if user already closed it on another device.
+function onStorageChanged(changes, area) {
+  for (var notificationId in changes) {
+    if (changes[notificationId].newValue === 'closedByUser')
+      chrome.notifications.clear(notificationId, function() { });
+  }
+}
+
+function onInstalled(details) {
   // Display a Welcome notification if this extension is installed for the first time.
   if (details.reason === 'install') {
     var options = getNotificationOptions(chrome.runtime.id);
@@ -114,8 +148,11 @@ chrome.runtime.onInstalled.addListener(function(details) {
 
     showNotification('welcome', options);
   }
-});
+}
 
-// Register all notifications event listeners.
+// Register all listeners.
 chrome.notifications.onButtonClicked.addListener(onNotificationsButtonClicked);
 chrome.notifications.onClicked.addListener(onNotificationsClicked);
+chrome.notifications.onClosed.addListener(onNotificationsClosed);
+chrome.storage.onChanged.addListener(onStorageChanged);
+chrome.runtime.onInstalled.addListener(onInstalled);
