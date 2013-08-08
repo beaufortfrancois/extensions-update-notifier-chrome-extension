@@ -71,5 +71,4 @@ window.onload = function() {
     if (result)
       showChangelog();
   });
-
 }

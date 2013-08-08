@@ -83,42 +83,52 @@ function showExtensionEnabledNotification(extension) {
     options.title = chrome.i18n.getMessage('updatedExtensionTitle', [extension.name]);
     options.message = chrome.i18n.getMessage('enabledExtensionMessage', [extension.name]);
 
-    showNotification(notificationId, options);
+    showNotification(notificationId+'enabled', options);
   });
 }
 
 // Handle notifications actions on button Click.
 function onNotificationsButtonClicked(notificationId, buttonIndex) {
-  var extensionId = notificationId.substr(0, 32);
-  chrome.management.get(extensionId, function(extension) {
-    if (extension.homepageUrl) {
-      if (buttonIndex === 0) {
-        chrome.tabs.create({ url: extension.homepageUrl });
-      } else if (buttonIndex === 1) {
-        if (extension.enabled) {
-          chrome.tabs.create({ url: chrome.extension.getURL('changelog.html#'+ extensionId) });
-        } else {
-          enableExtension(extension, showExtensionEnabledNotification);
+  var clickedNotification = {};
+  clickedNotification[notificationId] = 'clickedByUser';
+  chrome.storage.local.set(clickedNotification, function() {
+    var extensionId = notificationId.substr(0, 32);
+    chrome.management.get(extensionId, function(extension) {
+      if (extension.homepageUrl) {
+        if (buttonIndex === 0) {
+          chrome.tabs.create({ url: extension.homepageUrl });
+        } else if (buttonIndex === 1) {
+          if (extension.enabled) {
+            chrome.tabs.create({ url: chrome.extension.getURL('changelog.html#'+ extensionId) });
+          } else {
+            enableExtension(extension, showExtensionEnabledNotification);
+          }
         }
+      } else {
+        enableExtension(extension, showExtensionEnabledNotification);
       }
-    } else {
-      enableExtension(extension, showExtensionEnabledNotification);
-    }
+    });
   });
 }
 
 // Clear notification if user clicks on it.
 function onNotificationsClicked(notificationId) {
-  chrome.notifications.clear(notificationId, function() { });
+  var clickedNotification = {};
+  clickedNotification[notificationId] = 'clickedByUser';
+  chrome.storage.local.set(clickedNotification, function() {
+    chrome.notifications.clear(notificationId, function() { });
+  });
 }
 
 // Warn the others that this notification has been closed by the user.
-function onNotificationsClosed(notificationId, byUser) {
-  if (byUser) {
-    var closedNotification = {};
-    closedNotification[notificationId] = 'closedByUser';
-    chrome.storage.sync.set(closedNotification);
-  }
+function onNotificationsClosed(notificationId, closedByUser) {
+  chrome.storage.local.get(notificationId, function(results) {
+    if (closedByUser || results[notificationId] === 'clickedByUser') {
+      var closedNotification = {};
+      closedNotification[notificationId] = 'closedByUser';
+      chrome.storage.sync.set(closedNotification);
+    }
+  });
 }
 
 // Close notification if user already closed it on another device.
