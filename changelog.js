@@ -1,8 +1,10 @@
 var changelog = document.getElementById('changelog');
 var message = document.getElementById('message');
+var source = document.getElementById('source');
 var showChangelogButton = document.getElementById('showChangelogButton');
 
 var extensionId = window.location.hash.substr(1);
+var sourceUrl = 'https://chrome.google.com/webstore/detail/'+ extensionId; 
 
 function showSorryMessage() {
   changelog.style.display = 'none';
@@ -17,9 +19,11 @@ function showChangelog() {
   showChangelogButton.style.display = 'none';
   message.style.display = 'none';
   changelog.style.display = 'block';
+  source.href = sourceUrl;
+  source.innerText = sourceUrl;
 
   var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://chrome.google.com/webstore/detail/'+ extensionId, true);
+  xhr.open('GET', sourceUrl, true);
   xhr.onloadstart = function() {
     message.innerText = chrome.i18n.getMessage('loadingMessageText');
   }

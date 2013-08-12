@@ -39,12 +39,18 @@ button {
 }
 
 #title {
-  padding: 21px 0 13px;
+  padding-top: 21px;
   font-size: 1.5em;
   -webkit-user-select: none;
   font-weight: normal;
-  line-height: 1;
-  border-bottom: 1px solid #EEE;
+  line-height: 0;
+}
+
+#source {
+    text-decoration: none;
+    color: #15c;
+    margin-bottom: 13px;
+    display: block;
 }
 
 #changelog {
@@ -54,4 +60,5 @@ button {
   white-space: pre-wrap;
   margin-bottom: 24px;
   display: none;
+  border-top: 1px solid #EEE;
 }
