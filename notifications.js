@@ -22,7 +22,7 @@ function getExtensionIconDataUrl(url, callback) {
 
     var iconLeft = iconTop = (notificationSize - iconSize) / 2;
     context.drawImage(icon, iconLeft, iconTop);
-    callback(canvas.toDataURL("image/png"));
+    callback(canvas.toDataURL('image/png'));
   } 
   icon.src = url;
 }
