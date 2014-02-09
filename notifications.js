@@ -18,7 +18,7 @@ function getExtensionIconDataUrl(url, callback) {
     canvas.width = canvas.height = notificationSize;
 
     var context = canvas.getContext('2d');
-    context.fillStyle = '#F5F5F5';
+    context.fillStyle = 'rgba(0, 0, 0, 0)'; /* transparent background */
     context.fillRect(0, 0, canvas.width, canvas.height);
 
     var iconLeft = iconTop = (notificationSize - iconSize) / 2;
