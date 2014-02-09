@@ -96,10 +96,10 @@ function onNotificationsButtonClicked(notificationId, buttonIndex) {
     chrome.management.get(extensionId, function(extension) {
       if (extension.homepageUrl) {
         if (buttonIndex === 0) {
-          chrome.tabs.create({ url: extension.homepageUrl });
+          window.open(extension.homepageUrl);
         } else if (buttonIndex === 1) {
           if (extension.enabled) {
-            chrome.tabs.create({ url: chrome.extension.getURL('changelog.html#'+ extensionId) });
+            window.open(chrome.extension.getURL('changelog.html#'+ extensionId));
           } else {
             enableExtension(extension, showExtensionEnabledNotification);
           }
