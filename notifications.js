@@ -1,6 +1,5 @@
-// TODO: Handle 2x images
-var iconSize = 48;
-var notificationSize = 80;
+var iconSize = 48 * devicePixelRatio;
+var notificationSize = 80 * devicePixelRatio;
 
 // Helper function which returns a basic notification options object.
 function getNotificationOptions(extensionId) {
@@ -18,12 +17,11 @@ function getExtensionIconDataUrl(url, callback) {
     canvas.width = canvas.height = notificationSize;
 
     var context = canvas.getContext('2d');
-    context.fillStyle = 'rgba(0, 0, 0, 0)'; /* transparent background */
 
     var iconLeft = iconTop = (notificationSize - iconSize) / 2;
     context.drawImage(icon, iconLeft, iconTop);
     callback(canvas.toDataURL('image/png'));
-  } 
+  }
   icon.src = url;
 }
 
