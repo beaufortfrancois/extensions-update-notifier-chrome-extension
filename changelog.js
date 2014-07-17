@@ -10,7 +10,7 @@ function showSorryMessage() {
   changelog.style.display = 'none';
   message.style.display = 'block';
   message.classList.add('sorry');
-  message.innerText = chrome.i18n.getMessage('sorryMessageText');
+  message.textContent = chrome.i18n.getMessage('sorryMessageText');
 }
 
 // Show captured changelog from the Chrome Web Store.
@@ -20,12 +20,12 @@ function showChangelog() {
   message.style.display = 'none';
   changelog.style.display = 'block';
   source.href = sourceUrl;
-  source.innerText = sourceUrl;
+  source.textContent = sourceUrl;
 
   var xhr = new XMLHttpRequest();
   xhr.open('GET', sourceUrl, true);
   xhr.onloadstart = function() {
-    message.innerText = chrome.i18n.getMessage('loadingMessageText');
+    message.textContent = chrome.i18n.getMessage('loadingMessageText');
   }
   xhr.onload = function() {
     // Retrieve what's inside <pre></pre>.
@@ -65,12 +65,12 @@ showChangelogButton.addEventListener('click', function() {
 });
 
 window.onload = function() {
-  message.innerText = chrome.i18n.getMessage('requestPermissionsText');
-  showChangelogButton.innerText = chrome.i18n.getMessage('showChangelogButtonText');
+  message.textContent = chrome.i18n.getMessage('requestPermissionsText');
+  showChangelogButton.textContent = chrome.i18n.getMessage('showChangelogButtonText');
 
   chrome.management.get(extensionId, function(extension) {
     var title = chrome.i18n.getMessage('titleChangelogText', [extension.name]);
-    document.getElementById('title').innerText = title;
+    document.getElementById('title').textContent = title;
     document.title = title;
   });
 
