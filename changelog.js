@@ -32,16 +32,20 @@ function showChangelog() {
     var text = xhr.response.substring(xhr.response.search('<pre '),
         xhr.response.search('</pre>')+6);
 
-    // If the word "changelog" is inside, we assume there is a changelog.
+    // We assume there is a changelog,
+    // If the word "changelog" is inside.
     if (text.search(/changelog/i) !== -1) {
       changelog.innerHTML = text.substring(text.search(/changelog/i), text.length);
-    // If the version number is inside, we also assume there is a changelog.
+    // If the version number is inside.
     } else if (text.indexOf(localStorage[extensionId]) !== -1) {
-        var index = text.indexOf(localStorage[extensionId]);
-        while (text[index].charCodeAt(0) !== 10 && index >= 0) {
-            index--;
-        }
-        changelog.innerHTML = text.substring(index, text.length);
+      var index = text.indexOf(localStorage[extensionId]);
+      while (index >0 && text[index].charCodeAt(0) !== 10) {
+          index--;
+      }
+      changelog.innerHTML = text.substring(index, text.length);
+    // If the word "What's new" is inside.
+    } else if (text.search(/What&#39;s new/i) !== -1) {
+      changelog.innerHTML = text.substring(text.search(/What&#39;s new/i), text.length);
     } else {
       showSorryMessage();
     }
