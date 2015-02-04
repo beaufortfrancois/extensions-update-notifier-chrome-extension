@@ -180,8 +180,8 @@ function onInstalled(details) {
     showNotification('welcome', options);
   }
 
-  var when = Date.now() + 5e3; // 5 seconds
-  chrome.alarms.create('newOptions', { when: when });
+  // Wait for 30 seconds before prompting user about new options.
+  chrome.alarms.create('newOptions', { when: Date.now() + 30e3 });
 }
 
 // Register all listeners.
