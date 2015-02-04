@@ -6,6 +6,15 @@ function setEnabledExtension(extension, enabled, callback) {
   });
 }
 
+// Helper function which uninstalls an extension.
+function uninstallExtension(extension, callback) {
+  chrome.management.uninstall(extension.id, function(e) {
+    if (!chrome.runtime.lastError) {
+      callback(extension);
+    }
+  })
+}
+
 // Check if the extension has been updated.
 function checkExtensionVersion(extension) {
   // Ignore extensions in development.

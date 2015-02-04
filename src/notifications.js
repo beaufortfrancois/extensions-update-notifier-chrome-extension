@@ -1,5 +1,6 @@
 var iconSize = 48 * devicePixelRatio;
 var notificationSize = 80 * devicePixelRatio;
+var buttonSize = 16 * devicePixelRatio;
 
 // Helper function which returns a basic notification options object.
 function getNotificationOptions(extensionId) {
@@ -7,6 +8,11 @@ function getNotificationOptions(extensionId) {
     type: 'basic',
     iconUrl: 'chrome://extension-icon/'+ extensionId +'/'+ iconSize +'/1'
   };
+}
+
+// Helper function which returns button image URL.
+function getButtonIconUrl(name) {
+  return chrome.runtime.getURL('/images/' + name + '_' + buttonSize + '.png');
 }
 
 // Helper function which returns extension Icon Data Url.
@@ -46,27 +52,31 @@ function showExtensionUpdateNotification(extension, oldVersion) {
       [extension.name, oldVersion, extension.version]),
   options.buttons = [];
 
-  // Add a "Visit website" button if it has one website.
-  if (extension.homepageUrl !== '') {
-    options.buttons.push({
-      title: chrome.i18n.getMessage('websiteButtonTitle'),
-      iconUrl: chrome.extension.getURL('images/website_16.png')
-    });
-    // And add a "Show changelog" button if the extension is enabled.
-    if (extension.enabled) {
-      options.buttons.push({
-        title: chrome.i18n.getMessage('changelogButtonTitle'),
-        iconUrl: chrome.extension.getURL('images/action_16.png')
-      }); 
-    }
-  }
-  // Make the icon gray and add an "Enable" button if the extension is disabled.
+  // Make the icon gray and add "Enable" and "Uninstall" buttons if the
+  // extension is disabled.
   if (!extension.enabled) {
     options.iconUrl += '?grayscale=true';
     options.buttons.push({
       title: chrome.i18n.getMessage('enableButtonTitle'),
-      iconUrl: chrome.extension.getURL('images/action_16.png')
+      iconUrl: getButtonIconUrl('action')
     });
+    options.buttons.push({
+      title: chrome.i18n.getMessage('uninstallButtonTitle'),
+      iconUrl: getButtonIconUrl('trash')
+    });
+  } else {
+    // Add a "Visit website" button if it has one website.
+    if (extension.homepageUrl !== '') {
+      options.buttons.push({
+        title: chrome.i18n.getMessage('websiteButtonTitle'),
+        iconUrl: getButtonIconUrl('website')
+      });
+      // And add a "Show changelog" button.
+      options.buttons.push({
+        title: chrome.i18n.getMessage('changelogButtonTitle'),
+        iconUrl: getButtonIconUrl('changelog')
+      });
+    }
   }
   showNotification(getNotificationId(extension), options);
 }
@@ -84,6 +94,12 @@ function showExtensionEnabledNotification(extension) {
   });
 }
 
+// Clear notification when an extension has been explicitely uninstalled.
+function showExtensionUninstalledNotification(extension) {
+  var notificationId = getNotificationId(extension);
+  chrome.notifications.clear(notificationId, function() { });
+}
+
 // Handle notifications actions on button Click.
 function onNotificationsButtonClicked(notificationId, buttonIndex) {
   var clickedNotification = {};
@@ -91,18 +107,18 @@ function onNotificationsButtonClicked(notificationId, buttonIndex) {
   chrome.storage.local.set(clickedNotification, function() {
     var extensionId = notificationId.substr(0, 32);
     chrome.management.get(extensionId, function(extension) {
-      if (extension.homepageUrl) {
+      if (extension.enabled) {
         if (buttonIndex === 0) {
           window.open(extension.homepageUrl);
         } else if (buttonIndex === 1) {
-          if (extension.enabled) {
-            window.open(chrome.extension.getURL('changelog.html#'+ extensionId));
-          } else {
-            setEnabledExtension(extension, true, showExtensionEnabledNotification);
-          }
+          window.open(chrome.runtime.getURL('changelog.html#'+ extensionId));
         }
       } else {
-        setEnabledExtension(extension, true, showExtensionEnabledNotification);
+        if (buttonIndex === 0) {
+          setEnabledExtension(extension, true, showExtensionEnabledNotification);
+        } else {
+          uninstallExtension(extension, showExtensionUninstalledNotification);
+        }
       }
     });
   });

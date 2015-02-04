@@ -17,6 +17,10 @@
          }
        }
    },
+   "uninstallButtonTitle": {
+      "description": "Text displayed in the extension notification to uninstall the extension.",
+      "message": "Remove..."
+   },
    "extDescription": {
       "description": "Extension description.",
       "message": "Show a notification when an extension is updated."
@@ -27,7 +31,7 @@
    },
    "websiteButtonTitle": {
       "description": "Text displayed in the extension update notification to visit the website.",
-      "message": "Visit website"
+      "message": "View in store"
    },
    "loadingMessageText": {
       "description": "Text displayed in the changelog when retrieving changelog.",
@@ -97,7 +101,7 @@
    },
    "newOptionsText": {
       "description": "Text displayed in the new options notification.",
-      "message": "You can disable extensions and apps when autoupdated."
+      "message": "You can now disable extensions and apps when autoupdated."
    },
    "newOptionsTitle": {
       "description": "Title displayed in the new options notification.",
