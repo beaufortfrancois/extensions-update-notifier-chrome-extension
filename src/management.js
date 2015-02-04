@@ -1,6 +1,7 @@
 // Helper function which enables an extension.
-function enableExtension(extension, callback) {
-  chrome.management.setEnabled(extension.id, true, function() {
+function setEnabledExtension(extension, enabled, callback) {
+  chrome.management.setEnabled(extension.id, enabled, function() {
+    extension.enabled = enabled;
     callback(extension);
   });
 }
@@ -15,8 +16,18 @@ function checkExtensionVersion(extension) {
       // And if the user hasn't already seen this notification.
       var notificationId = getNotificationId(extension);
       chrome.storage.sync.get(notificationId, function(results) {
-        if (results[notificationId] !== 'closedByUser')
-          showExtensionUpdateNotification(extension, currentVersion);
+        if (results[notificationId] !== 'closedByUser') {
+          // Disable extension first if user has chosen to.
+          chrome.storage.sync.get('alwaysDisableExtension', function(results) {
+            if (results['alwaysDisableExtension']) {
+              setEnabledExtension(extension, false, function(extension) {
+                showExtensionUpdateNotification(extension, currentVersion);
+              });
+            } else {
+              showExtensionUpdateNotification(extension, currentVersion);
+            }
+          });
+        }
       });
     }
     // Store new version of this extension.

@@ -98,11 +98,11 @@ function onNotificationsButtonClicked(notificationId, buttonIndex) {
           if (extension.enabled) {
             window.open(chrome.extension.getURL('changelog.html#'+ extensionId));
           } else {
-            enableExtension(extension, showExtensionEnabledNotification);
+            setEnabledExtension(extension, true, showExtensionEnabledNotification);
           }
         }
       } else {
-        enableExtension(extension, showExtensionEnabledNotification);
+        setEnabledExtension(extension, true, showExtensionEnabledNotification);
       }
     });
   });
