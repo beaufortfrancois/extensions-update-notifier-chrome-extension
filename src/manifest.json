@@ -11,9 +11,13 @@
       "128": "images/128.png"
    },
    "manifest_version": 2,
-   "minimum_chrome_version": "28",
+   "minimum_chrome_version": "40",
    "name": "__MSG_extName__",
    "optional_permissions": [ "https://chrome.google.com/*" ],
+   "options_ui": {
+     "page": "options.html",
+     "chrome_style": true
+   },
    "permissions": [ "management", "notifications", "storage" ],
    "version": "2.3.1"
 }
