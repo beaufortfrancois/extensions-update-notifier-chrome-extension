@@ -110,6 +110,12 @@ function onNotificationsButtonClicked(notificationId, buttonIndex) {
 
 // Clear notification if user clicks on it.
 function onNotificationsClicked(notificationId) {
+  // Open new options page.
+  if (notificationId === 'newOptions') {
+    chrome.tabs.create({
+      url: 'chrome://extensions/?options=' + chrome.runtime.id
+    });
+  }
   var clickedNotification = {};
   clickedNotification[notificationId] = 'clickedByUser';
   chrome.storage.local.set(clickedNotification, function() {
@@ -136,6 +142,18 @@ function onStorageChanged(changes, area) {
   }
 }
 
+function onAlarm(alarm) {
+  chrome.storage.sync.get('newOptions', function(results) {
+    if (results['newOptions'] !== 'closedByUser') {
+      var options = getNotificationOptions(chrome.runtime.id);
+      options.title = chrome.i18n.getMessage('newOptionsTitle');
+      options.message = chrome.i18n.getMessage('newOptionsText');
+
+      showNotification('newOptions', options);
+    }
+  })
+}
+
 function onInstalled(details) {
   // Display a Welcome notification if this extension is installed for the first time.
   if (details.reason === 'install') {
@@ -145,9 +163,13 @@ function onInstalled(details) {
 
     showNotification('welcome', options);
   }
+
+  var when = Date.now() + 5e3; // 5 seconds
+  chrome.alarms.create('newOptions', { when: when });
 }
 
 // Register all listeners.
+chrome.alarms.onAlarm.addListener(onAlarm);
 chrome.notifications.onButtonClicked.addListener(onNotificationsButtonClicked);
 chrome.notifications.onClicked.addListener(onNotificationsClicked);
 chrome.notifications.onClosed.addListener(onNotificationsClosed);

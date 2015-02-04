@@ -18,6 +18,6 @@
      "page": "options.html",
      "chrome_style": true
    },
-   "permissions": [ "management", "notifications", "storage" ],
+   "permissions": [ "alarms", "management", "notifications", "storage" ],
    "version": "2.3.1"
 }

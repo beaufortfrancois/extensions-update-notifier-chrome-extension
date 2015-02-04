@@ -90,5 +90,13 @@
    "welcomeTitle": {
       "description": "Title displayed in the welcome notification.",
       "message": "Rest assured"
+   },
+   "newOptionsText": {
+      "description": "Text displayed in the new options notification.",
+      "message": "You can disable extensions and apps when autoupdated."
+   },
+   "newOptionsTitle": {
+      "description": "Title displayed in the new options notification.",
+      "message": "Did you know?"
    }
 }
