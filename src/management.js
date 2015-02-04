@@ -17,8 +17,8 @@ function uninstallExtension(extension, callback) {
 
 // Check if the extension has been updated.
 function checkExtensionVersion(extension) {
-  // Ignore extensions in development.
-  if (extension.installType !== 'development') {
+  // Ignore extensions in development (except us).
+  if (extension.installType !== 'development' || extension.id === chrome.runtime.id) {
     // Show a notification if the extension version has changed.
     var currentVersion = localStorage[extension.id];
     if (currentVersion && (currentVersion !== extension.version)) {
