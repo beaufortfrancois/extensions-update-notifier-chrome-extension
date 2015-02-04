@@ -1,5 +1,5 @@
 // This is only for me when I play with it during development.
-chrome.management.get(chrome.runtime.id, function(extension) {
+chrome.management.getSelf(function(extension) {
   if (extension.installType === 'development') {
     localStorage.gbchcmhmhahfdphkhkmpfmihenigjmpp = '0';
     localStorage.hfhhnacclhffhdffklopdkcgdhifgngh = '0';
