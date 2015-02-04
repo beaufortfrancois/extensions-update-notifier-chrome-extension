@@ -19,5 +19,5 @@
      "chrome_style": true
    },
    "permissions": [ "alarms", "management", "notifications", "storage" ],
-   "version": "2.3.1"
+   "version": "2.4"
 }
