@@ -5,7 +5,7 @@
    },
    "enableButtonTitle": {
       "description": "Text displayed in the extension notification to enable the extension.",
-      "message": "Activer"
+      "message": "Réactiver"
    },
    "enabledExtensionMessage": {
       "description": "Text displayed in the extension enabled notification. Expects extension name to be passed in.",
@@ -16,6 +16,10 @@
             "example": "My Chrome Extension"
          }
        }
+   },
+   "uninstallButtonTitle": {
+      "description": "Text displayed in the extension notification to uninstall the extension.",
+      "message": "Supprimer de Google Chrome..."
    },
    "extDescription": {
       "description": "Extension description.",
@@ -57,7 +61,7 @@
    },
    "updatedExtensionMessage": {
       "description": "Text displayed in the extension notification. Expects extension name, old version and version to be passed in.",
-      "message": "$extensionName$ a été mis à jour de v.$extensionOldVersion$ à v.$extensionVersion$.",
+      "message": "$extensionName$ a été mis à jour de la version $extensionOldVersion$ à $extensionVersion$.",
       "placeholders": {
          "extensionName": {
             "content": "$1",
