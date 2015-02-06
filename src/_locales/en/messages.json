@@ -5,7 +5,7 @@
    },
    "enableButtonTitle": {
       "description": "Text displayed in the extension notification to enable the extension.",
-      "message": "Enable"
+      "message": "Re-enable"
    },
    "enabledExtensionMessage": {
       "description": "Text displayed in the extension enabled notification. Expects extension name to be passed in.",
@@ -19,7 +19,7 @@
    },
    "uninstallButtonTitle": {
       "description": "Text displayed in the extension notification to uninstall the extension.",
-      "message": "Remove..."
+      "message": "Remove from Chrome..."
    },
    "extDescription": {
       "description": "Extension description.",
