@@ -97,7 +97,7 @@ function showExtensionEnabledNotification(extension) {
 // Clear notification when an extension has been explicitely uninstalled.
 function showExtensionUninstalledNotification(extension) {
   var notificationId = getNotificationId(extension);
-  chrome.notifications.clear(notificationId, function() { });
+  chrome.notifications.clear(notificationId);
 }
 
 // Handle notifications actions on button Click.
@@ -135,7 +135,7 @@ function onNotificationsClicked(notificationId) {
   var clickedNotification = {};
   clickedNotification[notificationId] = 'clickedByUser';
   chrome.storage.local.set(clickedNotification, function() {
-    chrome.notifications.clear(notificationId, function() { });
+    chrome.notifications.clear(notificationId);
   });
 }
 
@@ -154,7 +154,7 @@ function onNotificationsClosed(notificationId, closedByUser) {
 function onStorageChanged(changes, area) {
   for (var notificationId in changes) {
     if (changes[notificationId].newValue === 'closedByUser')
-      chrome.notifications.clear(notificationId, function() { });
+      chrome.notifications.clear(notificationId);
   }
 }
 
