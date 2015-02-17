@@ -30,13 +30,13 @@
       "message": "Lade..."
    },
    "requestPermissionsText": {
-      "message": "Dieses experimentelle Feature benötigt eine weitere Berechtigung zum Chrome Web Store."
+      "message": "Diese experimentelle Funktion benötigt eine zusätzliche Berechtigung für den Chrome Web Store."
    },
    "showChangelogButtonText": {
-      "message": "Zeige Changelog"
+      "message": "Changelog anzeigen"
    },
    "sorryMessageText": {
-      "message": "Sorry... es steht derzeit kein Changelog zur Verfügung"
+      "message": "Entschuldigung... momentan ist kein Changelog verfügbar."
    },
    "titleChangelogText": {
       "message": "$extensionName$ Changelog",
@@ -74,10 +74,10 @@
       }
    },
    "welcomeText": {
-      "message": "Du bekommst nun Benachrichtigungen angezeigt, sobald eine Erweiterung aktualisiert wurde.."
+      "message": "Zukünftig erhältst du eine Benachrichtigung, sobald eine Erweiterung aktualisiert wurde."
    },
    "welcomeTitle": {
-      "message": "Bleibe beruhigt."
+      "message": "Immer informiert"
    },
    "alwaysDisableExtension": {
       "message": "Erweiterungen nach automatischem Update deaktivieren."
