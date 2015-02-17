@@ -1,14 +1,11 @@
 {
    "changelogButtonTitle": {
-      "description": "Text displayed in the extension notification to open changelog page.",
       "message": "Changelog weergeven (experimenteel)"
    },
    "enableButtonTitle": {
-      "description": "Text displayed in the extension notification to enable the extension.",
       "message": "Opnieuw inschakelen"
    },
    "enabledExtensionMessage": {
-      "description": "Text displayed in the extension enabled notification. Expects extension name to be passed in.",
       "message": "$extensionName$ is succesvol aangezet.",
       "placeholders": {
          "extensionName": {
@@ -18,39 +15,30 @@
        }
    },
    "uninstallButtonTitle": {
-      "description": "Text displayed in the extension notification to uninstall the extension.",
       "message": "Verwijderen uit Chrome..."
    },
    "extDescription": {
-      "description": "Extension description.",
       "message": "Laat een notificatie zien wanneer een extensie is geupdate."
    },
    "extName": {
-      "description": "Extension name.",
       "message": "Extensie Update Melder"
    },
    "websiteButtonTitle": {
-      "description": "Text displayed in the extension update notification to visit the website.",
       "message": "Bekijken in de Web Store"
    },
    "loadingMessageText": {
-      "description": "Text displayed in the changelog when retrieving changelog.",
       "message": "Laden..."
    },
    "requestPermissionsText": {
-      "description": "Text displayed in the changelog when additional permissions are requested.",
       "message": "Deze experimentele functie heeft een extra permissie tot de Chrome Web Store nodig."
    },
    "showChangelogButtonText": {
-      "description": "Text displayed in the changelog button to request permissions.",
       "message": "Weergeef Changelog"
    },
    "sorryMessageText": {
-      "description": "Text displayed in the changelog when there is no changelog provided.",
       "message": "Sorry... er is geen changelog beschikbaar."
    },
    "titleChangelogText": {
-      "description": "Title displayed in the changelog.",
       "message": "$extensionName$ Changelog",
       "placeholders": {
          "extensionName": {
@@ -60,7 +48,6 @@
       }
    },
    "updatedExtensionMessage": {
-      "description": "Text displayed in the extension notification. Expects extension name, old version and version to be passed in.",
       "message": "$extensionName$ is geupdate van v.$extensionOldVersion$ naar v.$extensionVersion$.",
       "placeholders": {
          "extensionName": {
@@ -78,7 +65,6 @@
       }
    },
    "updatedExtensionTitle": {
-      "description": "Title displayed in the extension notification. Expects extension name to be passed in.",
       "message": "$extensionName$ Update",
       "placeholders": {
          "extensionName": {
@@ -88,23 +74,18 @@
       }
    },
    "welcomeText": {
-      "description": "Text displayed in the welcome notification.",
       "message": "Je zult worden meegedeeld wanneer een extensie geupdate is."
    },
    "welcomeTitle": {
-      "description": "Title displayed in the welcome notification.",
       "message": "Wees gerust"
    },
    "alwaysDisableExtension": {
-      "description": "Text displayed to disable extension in the options page.",
       "message": "TODO"
    },
    "newOptionsText": {
-      "description": "Text displayed in the new options notification.",
       "message": "TODO"
    },
    "newOptionsTitle": {
-      "description": "Title displayed in the new options notification.",
       "message": "TODO"
    }
 }

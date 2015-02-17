@@ -1,14 +1,11 @@
 {
    "changelogButtonTitle": {
-      "description": "Text displayed in the extension notification to open changelog page.",
       "message": "Список изменений (экспериментально)"
    },
    "enableButtonTitle": {
-      "description": "Text displayed in the extension notification to enable the extension.",
       "message": "Включить снова"
    },
    "enabledExtensionMessage": {
-      "description": "Text displayed in the extension enabled notification. Expects extension name to be passed in.",
       "message": "Расширение $extensionName$ было успешно обновлено.",
       "placeholders": {
          "extensionName": {
@@ -18,39 +15,30 @@
        }
    },
    "uninstallButtonTitle": {
-      "description": "Text displayed in the extension notification to uninstall the extension.",
       "message": "Удалить..."
    },
    "extDescription": {
-      "description": "Extension description.",
       "message": "Показывает уведомления, когда расширения обновляются."
    },
    "extName": {
-      "description": "Extension name.",
       "message": "Уведомление об обновлениях расширений"
    },
    "websiteButtonTitle": {
-      "description": "Text displayed in the extension update notification to visit the website.",
       "message": "Открыть в Интернет-магазине"
    },
    "loadingMessageText": {
-      "description": "Text displayed in the changelog when retrieving changelog.",
       "message": "Загрузка..."
    },
    "requestPermissionsText": {
-      "description": "Text displayed in the changelog when additional permissions are requested.",
       "message": "Эта экспериментальная функция требует дополнительных прав."
    },
    "showChangelogButtonText": {
-      "description": "Text displayed in the changelog button to request permissions.",
       "message": "Показывать список изменений"
    },
    "sorryMessageText": {
-      "description": "Text displayed in the changelog when there is no changelog provided.",
       "message": "Очень жаль, но в данный момент список изменений недоступен."
    },
    "titleChangelogText": {
-      "description": "Title displayed in the changelog.",
       "message": "Список изменений $extensionName$",
       "placeholders": {
          "extensionName": {
@@ -60,7 +48,6 @@
       }
    },
    "updatedExtensionMessage": {
-      "description": "Text displayed in the extension notification. Expects extension name, old version and version to be passed in.",
       "message": "Расширение $extensionName$ обновилось с v.$extensionOldVersion$ до v.$extensionVersion$.",
       "placeholders": {
          "extensionName": {
@@ -78,7 +65,6 @@
       }
    },
    "updatedExtensionTitle": {
-      "description": "Title displayed in the extension notification. Expects extension name to be passed in.",
       "message": "Обновление $extensionName$",
       "placeholders": {
          "extensionName": {
@@ -88,23 +74,18 @@
       }
    },
    "welcomeText": {
-      "description": "Text displayed in the welcome notification.",
       "message": "Вы будете получать уведомления по мере обновления расширений."
    },
    "welcomeTitle": {
-      "description": "Title displayed in the welcome notification.",
       "message": "Будьте уверены"
    },
    "alwaysDisableExtension": {
-      "description": "Text displayed to disable extension in the options page.",
       "message": "TODO"
    },
    "newOptionsText": {
-      "description": "Text displayed in the new options notification.",
       "message": "TODO"
    },
    "newOptionsTitle": {
-      "description": "Title displayed in the new options notification.",
       "message": "TODO"
    }
 }

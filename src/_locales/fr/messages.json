@@ -1,14 +1,11 @@
 {
    "changelogButtonTitle": {
-      "description": "Text displayed in the extension notification to open changelog page.",
       "message": "Afficher le changelog (expérimental)"
    },
    "enableButtonTitle": {
-      "description": "Text displayed in the extension notification to enable the extension.",
       "message": "Réactiver"
    },
    "enabledExtensionMessage": {
-      "description": "Text displayed in the extension enabled notification. Expects extension name to be passed in.",
       "message": "$extensionName$ a été activé avec succès.",
       "placeholders": {
          "extensionName": {
@@ -18,39 +15,30 @@
        }
    },
    "uninstallButtonTitle": {
-      "description": "Text displayed in the extension notification to uninstall the extension.",
       "message": "Supprimer de Google Chrome..."
    },
    "extDescription": {
-      "description": "Extension description.",
       "message": "Affiche une notification quand une extension est mise à jour."
    },
    "extName": {
-      "description": "Extension name.",
       "message": "Notifications de mises à jour d'extensions"
    },
    "websiteButtonTitle": {
-      "description": "Text displayed in the extension update notification to visit the website.",
       "message": "Afficher dans la boutique"
    },
    "loadingMessageText": {
-      "description": "Text displayed in the changelog when retrieving changelog.",
       "message": "Chargement..."
    },
    "requestPermissionsText": {
-      "description": "Text displayed in the changelog when additional permissions are requested.",
       "message": "Cette fonctionnalité expérimentale requiert une permission supplémentaire au Chrome Web Store."
    },
    "showChangelogButtonText": {
-      "description": "Text displayed in the changelog button to request permissions.",
       "message": "Afficher le changelog"
    },
    "sorryMessageText": {
-      "description": "Text displayed in the changelog when there is no changelog provided.",
       "message": "Désolé... le changelog n'est pas disponible pour le moment."
    },
    "titleChangelogText": {
-      "description": "Title displayed in the changelog.",
       "message": "Changelog de $extensionName$",
       "placeholders": {
          "extensionName": {
@@ -60,7 +48,6 @@
       }
    },
    "updatedExtensionMessage": {
-      "description": "Text displayed in the extension notification. Expects extension name, old version and version to be passed in.",
       "message": "$extensionName$ a été mis à jour de la version $extensionOldVersion$ à $extensionVersion$.",
       "placeholders": {
          "extensionName": {
@@ -78,7 +65,6 @@
       }
    },
    "updatedExtensionTitle": {
-      "description": "Title displayed in the extension notification. Expects extension name to be passed in.",
       "message": "$extensionName$ a été mis à jour",
       "placeholders": {
          "extensionName": {
@@ -88,23 +74,18 @@
       }
    },
    "welcomeText": {
-      "description": "Text displayed in the welcome notification.",
       "message": "Vous serez prévenus dès qu'une extension est mise à jour."
    },
    "welcomeTitle": {
-      "description": "Title displayed in the welcome notification.",
       "message": "Soyez rassurés"
    },
    "alwaysDisableExtension": {
-      "description": "Text displayed to disable extension in the options page.",
       "message": "Désactiver les extensions quand elles sont mises à jour."
    },
    "newOptionsText": {
-      "description": "Text displayed in the new options notification.",
       "message": "Tu peux désormais désactiver les extensions quand elles sont mises à jour."
    },
    "newOptionsTitle": {
-      "description": "Title displayed in the new options notification.",
       "message": "Est-ce que tu savais?"
    }
 }
