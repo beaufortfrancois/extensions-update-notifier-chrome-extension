@@ -158,6 +158,13 @@ function onStorageChanged(changes, area) {
   }
 }
 
+// Open extensions options page when user clicked on notification settings.
+function onNotificationsShowSettings() {
+  chrome.tabs.create({
+    url: 'chrome://extensions/?options=' + chrome.runtime.id
+  });
+}
+
 function onAlarm(alarm) {
   chrome.storage.sync.get('newOptions', function(results) {
     if (results['newOptions'] !== 'closedByUser') {
@@ -189,5 +196,6 @@ chrome.alarms.onAlarm.addListener(onAlarm);
 chrome.notifications.onButtonClicked.addListener(onNotificationsButtonClicked);
 chrome.notifications.onClicked.addListener(onNotificationsClicked);
 chrome.notifications.onClosed.addListener(onNotificationsClosed);
+chrome.notifications.onShowSettings.addListener(onNotificationsShowSettings)
 chrome.storage.onChanged.addListener(onStorageChanged);
 chrome.runtime.onInstalled.addListener(onInstalled);
