@@ -31,7 +31,7 @@
    },
    "websiteButtonTitle": {
       "description": "Text displayed in the extension update notification to visit the website.",
-      "message": "Webseite besuchen"
+      "message": "Im Store ansehen"
    },
    "loadingMessageText": {
       "description": "Text displayed in the changelog when retrieving changelog.",
@@ -94,5 +94,17 @@
    "welcomeTitle": {
       "description": "Title displayed in the welcome notification.",
       "message": "Bleibe beruhigt."
+   },
+   "alwaysDisableExtension": {
+      "description": "Text displayed to disable extension in the options page.",
+      "message": "TODO"
+   },
+   "newOptionsText": {
+      "description": "Text displayed in the new options notification.",
+      "message": "TODO"
+   },
+   "newOptionsTitle": {
+      "description": "Title displayed in the new options notification.",
+      "message": "TODO"
    }
 }

@@ -97,11 +97,11 @@
    },
    "alwaysDisableExtension": {
       "description": "Text displayed to disable extension in the options page.",
-      "message": "Disable extensions and apps when autoupdated"
+      "message": "Disable extensions when autoupdated"
    },
    "newOptionsText": {
       "description": "Text displayed in the new options notification.",
-      "message": "You can now disable extensions and apps when autoupdated."
+      "message": "You can now disable extensions when autoupdated."
    },
    "newOptionsTitle": {
       "description": "Title displayed in the new options notification.",
