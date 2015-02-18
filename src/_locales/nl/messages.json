@@ -3,7 +3,7 @@
       "message": "Changelog weergeven"
    },
    "autoCloseNotification": {
-      "message": "Automatisch gesloten meldingen"
+      "message": "Notificaties automatisch sluiten"
    },
    "showChangelog": {
       "message": "Changelog weergeven (experimenteel)"
