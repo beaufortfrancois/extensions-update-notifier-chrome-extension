@@ -86,10 +86,10 @@
       "message": "Wees gerust"
    },
    "alwaysDisableExtension": {
-      "message": "Uitschakelen extensies wanneer automatische updates"
+      "message": "Extensies uitschakelen bij autoupdates"
    },
    "newOptionsText": {
-      "message": "U kunt nu extensies uitschakelt wanneer de auto-update."
+      "message": "Je kan nu extensies uitschakelen bij autoupdates."
    },
    "newOptionsTitle": {
       "message": "Wist je dat?"
