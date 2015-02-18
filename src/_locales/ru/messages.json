@@ -80,12 +80,12 @@
       "message": "Будьте уверены"
    },
    "alwaysDisableExtension": {
-      "message": "TODO"
+      "message": "Отключать расширения после их автообновления"
    },
    "newOptionsText": {
-      "message": "TODO"
+      "message": "Теперь можно отключать расширения после их автообновления."
    },
    "newOptionsTitle": {
-      "message": "TODO"
+      "message": "А Вы это знали?"
    }
 }
