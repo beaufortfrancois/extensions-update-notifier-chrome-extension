@@ -2,6 +2,9 @@
    "changelogButtonTitle": {
       "message": "Zeige Changelog"
    },
+   "autoCloseNotification": {
+      "message": "TODO"
+   },
    "showChangelog": {
       "message": "Zeige Changelog (experimentell)"
    },

@@ -2,6 +2,9 @@
    "changelogButtonTitle": {
       "message": "Список изменений"
    },
+   "autoCloseNotification": {
+      "message": "TODO"
+   },
    "showChangelog": {
       "message": "Список изменений (экспериментально)"
    },

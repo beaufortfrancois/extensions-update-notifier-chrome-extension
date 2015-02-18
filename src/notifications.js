@@ -35,7 +35,14 @@ function getExtensionIconDataUrl(url, callback) {
 function showNotification(notificationId, options) {
   getExtensionIconDataUrl(options.iconUrl, function(iconDataUrl) {
     options.iconUrl = iconDataUrl;
-    chrome.notifications.create(notificationId, options, function(){ });
+    chrome.notifications.create(notificationId, options, function(){
+      chrome.storage.sync.get({autoCloseNotification: DEFAULT_OPTIONS.AUTO_CLOSE_NOTIFICATION}, function(results) {
+        if (results.autoCloseNotification) {
+          // Raises an alarm to close notification after 10s.
+          chrome.alarms.create(notificationId, { when: Date.now() + 10e3 });
+        }
+      });
+    });
   });
 }
 
@@ -174,8 +181,8 @@ function onNotificationsShowSettings() {
   openOptionsPage();
 }
 
-// Show new options notification when alarm is received.
 function onAlarm(alarm) {
+  // Show new options notification when alarm is received.
   if (alarm.name === 'newOptions') {
     chrome.storage.sync.get('newOptions', function(results) {
       if (results['newOptions'] !== 'closedByUser') {
@@ -186,6 +193,14 @@ function onAlarm(alarm) {
         showNotification('newOptions', options);
       }
     });
+  // Clear notification otherwise.
+  } else {
+   chrome.storage.sync.get({autoCloseNotification: DEFAULT_OPTIONS.AUTO_CLOSE_NOTIFICATION}, function(results) {
+     if (results.autoCloseNotification) {
+       var notificationId = alarm.name;
+       chrome.notifications.clear(notificationId);
+     }
+   });
   }
 }
 

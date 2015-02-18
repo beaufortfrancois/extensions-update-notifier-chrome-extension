@@ -2,6 +2,9 @@
    "changelogButtonTitle": {
       "message": "Afficher le changelog"
    },
+   "autoCloseNotification": {
+      "message": "Fermer automatiquement les notifications"
+   },
    "showChangelog": {
       "message": "Afficher le changelog (expérimental)"
    },

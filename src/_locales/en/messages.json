@@ -3,6 +3,10 @@
       "description": "Text displayed in the extension notification to open changelog page.",
       "message": "Show changelog"
    },
+   "autoCloseNotification": {
+      "description": "Text displayed to auto close notifications in the options page.",
+      "message": "Automatically close notifications"
+   },
    "showChangelog": {
       "description": "Text displayed to show changelog in the options page.",
       "message": "Show changelog (experimental)"

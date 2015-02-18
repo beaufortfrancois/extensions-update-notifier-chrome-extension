@@ -1,13 +1,16 @@
 var showChangelogCheckbox = document.querySelector('#showChangelog');
+var autoCloseNotificationCheckbox = document.querySelector('#autoCloseNotification');
 var alwaysDisableExtensionCheckbox = document.querySelector('#alwaysDisableExtension');
 
 // Saves synced options.
 function saveOptions() {
-  var alwaysDisableExtension = alwaysDisableExtensionCheckbox.checked;
   var showChangelog = showChangelogCheckbox.checked;
+  var autoCloseNotification = autoCloseNotificationCheckbox.checked;
+  var alwaysDisableExtension = alwaysDisableExtensionCheckbox.checked;
   chrome.storage.sync.set({
     showChangelog: showChangelog,
-    alwaysDisableExtension: alwaysDisableExtension
+    autoCloseNotification: autoCloseNotification,
+    alwaysDisableExtension: alwaysDisableExtension,
   });
 }
 
@@ -26,12 +29,15 @@ window.onload = function() {
 
   var defaultOptions = {
     showChangelog: DEFAULT_OPTIONS.SHOW_CHANGELOG,
-    alwaysDisableExtension: DEFAULT_OPTIONS.ALWAYS_DISABLE_EXTENSION
+    autoCloseNotification: DEFAULT_OPTIONS.AUTO_CLOSE_NOTIFICATION,
+    alwaysDisableExtension: DEFAULT_OPTIONS.ALWAYS_DISABLE_EXTENSION,
   };
   chrome.storage.sync.get(defaultOptions, function(results) {
     showChangelogCheckbox.checked = results.showChangelog;
+    autoCloseNotificationCheckbox.checked = results.autoCloseNotification;
     alwaysDisableExtensionCheckbox.checked = results.alwaysDisableExtension;
   });
   showChangelogCheckbox.onchange = saveOptions;
+  autoCloseNotificationCheckbox.onchange = saveOptions;
   alwaysDisableExtensionCheckbox.onchange = saveOptions;
 }
