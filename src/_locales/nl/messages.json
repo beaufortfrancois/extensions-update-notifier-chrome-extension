@@ -3,7 +3,7 @@
       "message": "Changelog weergeven"
    },
    "autoCloseNotification": {
-      "message": "TODO"
+      "message": "Automatisch gesloten meldingen"
    },
    "showChangelog": {
       "message": "Changelog weergeven (experimenteel)"
@@ -86,12 +86,12 @@
       "message": "Wees gerust"
    },
    "alwaysDisableExtension": {
-      "message": "TODO"
+      "message": "Uitschakelen extensies wanneer automatische updates"
    },
    "newOptionsText": {
-      "message": "TODO"
+      "message": "U kunt nu extensies uitschakelt wanneer de auto-update."
    },
    "newOptionsTitle": {
-      "message": "TODO"
+      "message": "Wist je dat?"
    }
 }

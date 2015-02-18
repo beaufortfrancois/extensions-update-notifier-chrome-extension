@@ -3,7 +3,7 @@
       "message": "Список изменений"
    },
    "autoCloseNotification": {
-      "message": "TODO"
+      "message": "Автоматически закрыть уведомления"
    },
    "showChangelog": {
       "message": "Список изменений (экспериментально)"
