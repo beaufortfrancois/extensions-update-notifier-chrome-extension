@@ -1,5 +1,8 @@
 {
    "changelogButtonTitle": {
+      "message": "Список изменений"
+   },
+   "showChangelog": {
       "message": "Список изменений (экспериментально)"
    },
    "enableButtonTitle": {

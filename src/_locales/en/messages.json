@@ -1,6 +1,10 @@
 {
    "changelogButtonTitle": {
       "description": "Text displayed in the extension notification to open changelog page.",
+      "message": "Show changelog"
+   },
+   "showChangelog": {
+      "description": "Text displayed to show changelog in the options page.",
       "message": "Show changelog (experimental)"
    },
    "enableButtonTitle": {

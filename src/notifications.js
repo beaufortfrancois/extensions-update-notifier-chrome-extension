@@ -59,33 +59,39 @@ function showExtensionUpdateNotification(extension, oldVersion) {
       [extension.name, oldVersion, extension.version]),
   options.buttons = [];
 
-  // Make the icon gray and add "Enable" and "Uninstall" buttons if the
-  // extension is disabled.
-  if (!extension.enabled) {
-    options.iconUrl += '?grayscale=true';
-    options.buttons.push({
-      title: chrome.i18n.getMessage('enableButtonTitle'),
-      iconUrl: getButtonIconUrl('action')
-    });
-    options.buttons.push({
-      title: chrome.i18n.getMessage('uninstallButtonTitle'),
-      iconUrl: getButtonIconUrl('trash')
-    });
-  } else {
-    // Add a "Visit website" button if it has one website.
-    if (extension.homepageUrl !== '') {
+  chrome.storage.sync.get({showChangelog: DEFAULT_OPTIONS.SHOW_CHANGELOG}, function(results) {
+    var showChangelog = results.showChangelog;
+
+    // Make the icon gray and add "Enable" and "Uninstall" buttons if the
+    // extension is disabled.
+    if (!extension.enabled) {
+      options.iconUrl += '?grayscale=true';
       options.buttons.push({
-        title: chrome.i18n.getMessage('websiteButtonTitle'),
-        iconUrl: getButtonIconUrl('website')
+        title: chrome.i18n.getMessage('enableButtonTitle'),
+        iconUrl: getButtonIconUrl('action')
       });
-      // And add a "Show changelog" button.
       options.buttons.push({
-        title: chrome.i18n.getMessage('changelogButtonTitle'),
-        iconUrl: getButtonIconUrl('changelog')
+        title: chrome.i18n.getMessage('uninstallButtonTitle'),
+        iconUrl: getButtonIconUrl('trash')
       });
+    } else {
+      // Add a "Visit website" button if it has one website.
+      if (extension.homepageUrl !== '') {
+        options.buttons.push({
+          title: chrome.i18n.getMessage('websiteButtonTitle'),
+          iconUrl: getButtonIconUrl('website')
+        });
+        if (showChangelog) {
+          // And add a "Show changelog" button.
+          options.buttons.push({
+            title: chrome.i18n.getMessage('changelogButtonTitle'),
+            iconUrl: getButtonIconUrl('changelog')
+          });
+        }
+      }
     }
-  }
-  showNotification(getNotificationId(extension), options);
+    showNotification(getNotificationId(extension), options);
+  });
 }
 
 // Show a notification when an extension has been explicitely enabled.

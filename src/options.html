@@ -1,10 +1,20 @@
 <!DOCTYPE html>
 <html>
+<head>
+<style>
+  label {margin: 5px 0; display: block}
+</style>
+</head>
 <body>
+  <label>
+    <input type="checkbox" id="showChangelog">
+    <span i18-content="showChangelog"></span>
+  </label>
   <label>
     <input type="checkbox" id="alwaysDisableExtension">
     <span i18-content="alwaysDisableExtension"></span>
   </label>
+  <script src="constants.js"></script>
   <script src="options.js"></script>
 </body>
 </html>

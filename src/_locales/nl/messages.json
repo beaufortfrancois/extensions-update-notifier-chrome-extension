@@ -1,5 +1,8 @@
 {
    "changelogButtonTitle": {
+      "message": "Changelog weergeven"
+   },
+   "showChangelog": {
       "message": "Changelog weergeven (experimenteel)"
    },
    "enableButtonTitle": {

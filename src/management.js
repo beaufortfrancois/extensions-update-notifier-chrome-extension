@@ -27,7 +27,7 @@ function checkExtensionVersion(extension) {
       chrome.storage.sync.get(notificationId, function(results) {
         if (results[notificationId] !== 'closedByUser') {
           // Disable extension first if user has chosen to.
-          chrome.storage.sync.get('alwaysDisableExtension', function(results) {
+          chrome.storage.sync.get({'alwaysDisableExtension' : DEFAULT_OPTIONS.ALWAYS_DISABLE_EXTENSION}, function(results) {
             if (results['alwaysDisableExtension'] && extension.id !== chrome.runtime.id) {
               setEnabledExtension(extension, false, function(extension) {
                 showExtensionUpdateNotification(extension, currentVersion);
