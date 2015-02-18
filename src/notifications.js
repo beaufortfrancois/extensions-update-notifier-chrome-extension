@@ -174,16 +174,19 @@ function onNotificationsShowSettings() {
   openOptionsPage();
 }
 
+// Show new options notification when alarm is received.
 function onAlarm(alarm) {
-  chrome.storage.sync.get('newOptions', function(results) {
-    if (results['newOptions'] !== 'closedByUser') {
-      var options = getNotificationOptions(chrome.runtime.id);
-      options.title = chrome.i18n.getMessage('newOptionsTitle');
-      options.message = chrome.i18n.getMessage('newOptionsText');
+  if (alarm.name === 'newOptions') {
+    chrome.storage.sync.get('newOptions', function(results) {
+      if (results['newOptions'] !== 'closedByUser') {
+        var options = getNotificationOptions(chrome.runtime.id);
+        options.title = chrome.i18n.getMessage('newOptionsTitle');
+        options.message = chrome.i18n.getMessage('newOptionsText');
 
-      showNotification('newOptions', options);
-    }
-  })
+        showNotification('newOptions', options);
+      }
+    });
+  }
 }
 
 function onInstalled(details) {
