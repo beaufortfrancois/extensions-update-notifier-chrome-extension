@@ -3,7 +3,7 @@
       "message": "Zeige Changelog"
    },
    "autoCloseNotification": {
-      "message": "Automatisch schließen Benachrichtigungen"
+      "message": "Benachrichtigungen automatisch schließen"
    },
    "showChangelog": {
       "message": "Zeige Changelog (experimentell)"
