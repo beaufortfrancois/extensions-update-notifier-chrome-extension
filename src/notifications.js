@@ -51,13 +51,6 @@ function getNotificationId(extension) {
   return extension.id + extension.version;
 }
 
-// Helper function to open extension options page
-function openOptionsPage() {
-  chrome.tabs.create({
-    url: 'chrome://extensions/?options=' + chrome.runtime.id
-  });
-}
-
 // Show a notification when an extension has been updated.
 function showExtensionUpdateNotification(extension, oldVersion) {
   var options = getNotificationOptions(extension.id);
@@ -148,7 +141,7 @@ function onNotificationsButtonClicked(notificationId, buttonIndex) {
 function onNotificationsClicked(notificationId) {
   // Open new options page.
   if (notificationId === 'newOptions') {
-    openOptionsPage();
+    chrome.runtime.openOptionsPage();
   }
   var clickedNotification = {};
   clickedNotification[notificationId] = 'clickedByUser';
@@ -178,7 +171,7 @@ function onStorageChanged(changes, area) {
 
 // Open extensions options page when user clicked on notification settings.
 function onNotificationsShowSettings() {
-  openOptionsPage();
+  chrome.runtime.openOptionsPage();
 }
 
 function onAlarm(alarm) {
