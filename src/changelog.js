@@ -4,14 +4,7 @@ var source = document.getElementById('source');
 var showChangelogButton = document.getElementById('showChangelogButton');
 
 var extensionId = window.location.hash.substr(1);
-var sourceUrl = 'https://chrome.google.com/webstore/detail/'+ extensionId; 
-
-function showSorryMessage() {
-  changelog.style.display = 'none';
-  message.style.display = 'block';
-  message.classList.add('sorry');
-  message.textContent = chrome.i18n.getMessage('sorryMessageText');
-}
+var webstoreUrl = 'https://chrome.google.com/webstore/detail/'+ extensionId;
 
 // Show captured changelog from the Chrome Web Store.
 function showChangelog() {
@@ -19,42 +12,20 @@ function showChangelog() {
   showChangelogButton.style.display = 'none';
   message.style.display = 'none';
   changelog.style.display = 'block';
-  source.href = sourceUrl;
-  source.textContent = sourceUrl;
+  source.href = webstoreUrl;
+  source.textContent = webstoreUrl;
 
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', sourceUrl, true);
-  xhr.onloadstart = function() {
-    message.textContent = chrome.i18n.getMessage('loadingMessageText');
-  }
-  xhr.onload = function() {
-    // Retrieve what's inside <pre></pre>.
-    var text = xhr.response.substring(xhr.response.search('<pre '),
-        xhr.response.search('</pre>')+6);
-
-    // We assume there is a changelog,
-    // If the word "changelog" is inside.
-    if (text.search(/changelog/i) !== -1) {
-      changelog.innerHTML = text.substring(text.search(/changelog/i), text.length);
-    // If the version number is inside.
-    } else if (text.indexOf(localStorage[extensionId]) !== -1) {
-      var index = text.indexOf(localStorage[extensionId]);
-      while (index >0 && text[index].charCodeAt(0) !== 10) {
-          index--;
-      }
-      changelog.innerHTML = text.substring(index, text.length);
-    // If the word "What's new" is inside.
-    } else if (text.search(/What&#39;s new/i) !== -1) {
-      changelog.innerHTML = text.substring(text.search(/What&#39;s new/i), text.length);
-    } else {
-      showSorryMessage();
-    }
-  };
-  xhr.onerror = showSorryMessage;
-  xhr.send(null);
+  getWebstoreChangelog(extensionId, function success(changelogText) {
+    changelog.innerHTML = changelogText;
+  }, function error() {
+    changelog.style.display = 'none';
+    message.style.display = 'block';
+    message.classList.add('sorry');
+    message.textContent = chrome.i18n.getMessage('sorryMessageText');
+  });
 }
 
-var permissions = { origins: chrome.runtime.getManifest().optional_permissions };
+var permissions = { origins: ['https://chrome.google.com/*'] };
 
 // Request permissions when user clicks on Request button.
 showChangelogButton.addEventListener('click', function() {

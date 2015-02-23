@@ -51,46 +51,64 @@ function getNotificationId(extension) {
   return extension.id + extension.version;
 }
 
-// Show a notification when an extension has been updated.
-function showExtensionUpdateNotification(extension, oldVersion) {
+// Helper function to populate notification options.
+function setExtensionUpdateNotificationOptions(extension, oldVersion, showChangelog) {
   var options = getNotificationOptions(extension.id);
   options.title = chrome.i18n.getMessage('updatedExtensionTitle', [extension.name]),
   options.message = chrome.i18n.getMessage('updatedExtensionMessage',
       [extension.name, oldVersion, extension.version]),
   options.buttons = [];
-
-  chrome.storage.sync.get({showChangelog: DEFAULT_OPTIONS.SHOW_CHANGELOG}, function(results) {
-    var showChangelog = results.showChangelog;
-
-    // Make the icon gray and add "Enable" and "Uninstall" buttons if the
-    // extension is disabled.
-    if (!extension.enabled) {
-      options.iconUrl += '?grayscale=true';
+  // Make the icon gray and add "Enable" and "Uninstall" buttons if the
+  // extension is disabled.
+  if (!extension.enabled) {
+    options.iconUrl += '?grayscale=true';
+    options.buttons.push({
+      title: chrome.i18n.getMessage('enableButtonTitle'),
+      iconUrl: getButtonIconUrl('action')
+    });
+    options.buttons.push({
+      title: chrome.i18n.getMessage('uninstallButtonTitle'),
+      iconUrl: getButtonIconUrl('trash')
+    });
+  } else {
+    // Add a "Visit website" button if it has one website.
+    if (extension.homepageUrl !== '') {
       options.buttons.push({
-        title: chrome.i18n.getMessage('enableButtonTitle'),
-        iconUrl: getButtonIconUrl('action')
+        title: chrome.i18n.getMessage('websiteButtonTitle'),
+        iconUrl: getButtonIconUrl('website')
       });
-      options.buttons.push({
-        title: chrome.i18n.getMessage('uninstallButtonTitle'),
-        iconUrl: getButtonIconUrl('trash')
-      });
-    } else {
-      // Add a "Visit website" button if it has one website.
-      if (extension.homepageUrl !== '') {
+      if (showChangelog) {
+        // And add a "Show changelog" button.
         options.buttons.push({
-          title: chrome.i18n.getMessage('websiteButtonTitle'),
-          iconUrl: getButtonIconUrl('website')
+          title: chrome.i18n.getMessage('changelogButtonTitle'),
+          iconUrl: getButtonIconUrl('changelog')
         });
-        if (showChangelog) {
-          // And add a "Show changelog" button.
-          options.buttons.push({
-            title: chrome.i18n.getMessage('changelogButtonTitle'),
-            iconUrl: getButtonIconUrl('changelog')
-          });
-        }
       }
     }
-    showNotification(getNotificationId(extension), options);
+  }
+  return options;
+}
+
+// Show a notification when an extension has been updated.
+function showExtensionUpdateNotification(extension, oldVersion) {
+  var options;
+  chrome.storage.sync.get({showChangelog: DEFAULT_OPTIONS.SHOW_CHANGELOG}, function(results) {
+    // Don't show changelog button if user doesn't want it.
+    if (!results.showChangelog) {
+      options = setExtensionUpdateNotificationOptions(extension, oldVersion, false);
+      showNotification(getNotificationId(extension), options);
+    } else {
+      getWebstoreChangelog(extension.id, function success() {
+        // Show changelog button if changelog was detected.
+        options = setExtensionUpdateNotificationOptions(extension, oldVersion, true);
+        showNotification(getNotificationId(extension), options);
+      }, function error(reason) {
+        // Only show changelog button if permission is not yet granted.
+        options = setExtensionUpdateNotificationOptions(extension, oldVersion,
+            (reason === NO_PERMISSIONS_GRANTED));
+        showNotification(getNotificationId(extension), options);
+      });
+    }
   });
 }
 
