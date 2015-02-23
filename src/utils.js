@@ -29,7 +29,7 @@ function getWebstoreChangelog(extensionId, successCallback, errorCallback) {
     xhr.onload = function() {
       // Retrieve what's inside <pre></pre>.
       var text = xhr.response.substring(xhr.response.search('<pre '),
-          xhr.response.search('</pre>')+6);
+          xhr.response.search('</pre>'));
 
       // We assume there is a changelog,
       // If the word "changelog" is inside.

@@ -28,6 +28,11 @@ button {
   cursor: default;
 }
 
+a {
+  color: #15c;
+  text-decoration: none;
+}
+
 .sorry {
   background-color: rgb(249, 237, 190);
   border: 1px solid rgb(240, 195, 109);
@@ -47,10 +52,8 @@ button {
 }
 
 #source {
-    text-decoration: none;
-    color: #15c;
-    margin-bottom: 13px;
-    display: block;
+  margin-bottom: 13px;
+  display: block;
 }
 
 #changelog {

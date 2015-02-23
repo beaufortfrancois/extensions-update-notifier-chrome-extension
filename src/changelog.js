@@ -6,6 +6,20 @@ var showChangelogButton = document.getElementById('showChangelogButton');
 var extensionId = window.location.hash.substr(1);
 var webstoreUrl = 'https://chrome.google.com/webstore/detail/'+ extensionId;
 
+// Helper function to linkify URLs.
+function linkify(text){
+  return text.replace(
+      /((https?\:\/\/)|(www\.))(\S+)(\w{2,4})(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/gi,
+      function(url){
+          var full_url = url;
+          if (!full_url.match('^https?:\/\/')) {
+              full_url = 'http://' + full_url;
+          }
+          return '<a href="' + full_url + '">' + url + '</a>';
+      }
+  );
+}
+
 // Show captured changelog from the Chrome Web Store.
 function showChangelog() {
   // Show/hide DOM Elements.
@@ -16,7 +30,7 @@ function showChangelog() {
   source.textContent = webstoreUrl;
 
   getWebstoreChangelog(extensionId, function success(changelogText) {
-    changelog.innerHTML = changelogText;
+    changelog.innerHTML = linkify(changelogText);
   }, function error() {
     changelog.style.display = 'none';
     message.style.display = 'block';
