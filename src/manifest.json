@@ -1,7 +1,7 @@
 {
    "background": {
       "persistent": false,
-      "scripts": [ "constants.js", "notifications.js", "management.js" ]
+      "scripts": [ "utils.js", "notifications.js", "management.js" ]
    },
    "default_locale": "en",
    "description": "__MSG_extDescription__",

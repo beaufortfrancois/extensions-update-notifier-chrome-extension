@@ -65,8 +65,7 @@ showChangelogButton.addEventListener('click', function() {
 });
 
 window.onload = function() {
-  message.textContent = chrome.i18n.getMessage('requestPermissionsText');
-  showChangelogButton.textContent = chrome.i18n.getMessage('showChangelogButtonText');
+  localize();
 
   chrome.management.get(extensionId, function(extension) {
     var title = chrome.i18n.getMessage('titleChangelogText', [extension.name]);
