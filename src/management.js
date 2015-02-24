@@ -44,6 +44,11 @@ function checkExtensionVersion(extension) {
   }
 }
 
+// Dismiss extension notifications when extension is disabled.
+function onExtensionDisabled(extension) {
+  closeExtensionNotifications(extension.id);
+}
+
 // Check and save all installed extensions once.
 chrome.management.getAll(function(extensions) {
   extensions.forEach(function(extension) {
@@ -51,5 +56,6 @@ chrome.management.getAll(function(extensions) {
   });
 });
 
-// Register a listener to when an extension is installed.
+// Register all listeners.
 chrome.management.onInstalled.addListener(checkExtensionVersion);
+chrome.management.onDisabled.addListener(onExtensionDisabled);

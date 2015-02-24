@@ -192,6 +192,16 @@ function onNotificationsShowSettings() {
   chrome.runtime.openOptionsPage();
 }
 
+function closeExtensionNotifications(extensionId) {
+ chrome.notifications.getAll(function(notificationIds) {
+    Object.keys(notificationIds).forEach(function(notificationId) {
+      if (notificationId.indexOf(extensionId) === 0) {
+        chrome.notifications.clear(notificationId);
+      }
+    });
+  });
+}
+
 function onAlarm(alarm) {
   // Show new options notification when alarm is received.
   if (alarm.name === 'newOptions') {
