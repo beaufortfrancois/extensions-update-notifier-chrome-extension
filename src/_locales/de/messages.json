@@ -42,7 +42,7 @@
       "message": "Changelog anzeigen"
    },
    "sorryMessageText": {
-      "message": "Entschuldigung... momentan ist kein Changelog verfügbar."
+      "message": "Tut mir leid... momentan ist kein Changelog verfügbar."
    },
    "titleChangelogText": {
       "message": "$extensionName$ Changelog",
