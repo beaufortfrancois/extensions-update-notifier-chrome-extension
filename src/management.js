@@ -49,10 +49,26 @@ function onExtensionDisabled(extension) {
   closeExtensionNotifications(extension.id);
 }
 
-// Check and save all installed extensions once.
+// At startup...
 chrome.management.getAll(function(extensions) {
+  // Check and save all installed extensions once.
   extensions.forEach(function(extension) {
     checkExtensionVersion(extension);
+  });
+  // Clean storage.
+  chrome.management.getAll(function(results) {
+    var extensions = results.map(function(e) { return e.id });
+    var keysToRemove = [];
+    chrome.storage.sync.get(null, function(results) {
+      Object.keys(results).forEach(function(key) {
+        // Keep extensions storage history from extensions that are still there
+        // and remove the other ones.
+        if (key.length > 32 && extensions.indexOf(key.slice(0, 32)) < 0) {
+          keysToRemove.push(key);
+        }
+      });
+      chrome.storage.sync.remove(keysToRemove);
+    });
   });
 });
 
