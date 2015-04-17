@@ -1,22 +1,17 @@
 {
    "changelogButtonTitle": {
-      "description": "Texto mostrado en la notificación de extensión para abrir la página del changelog.",
       "message": "Muestra changelog"
    },
    "autoCloseNotification": {
-      "description": "Texto mostrado para auto cerrar las notificaciones en la página de opciones.",
       "message": "Cierra notificaciones automáticamente"
    },
    "showChangelog": {
-      "description": "Texto mostrado para la opción de mostrar changelog en la página de opciones.",
       "message": "Muestra changelog (experimental)"
    },
    "enableButtonTitle": {
-      "description": "Texto mostrado en la notificación de extensión para activar la extensión.",
       "message": "Reactivar"
    },
    "enabledExtensionMessage": {
-      "description": "Texto mostrado en la notificación de extensión. Espera un nombre de extensión como parámetro.",
       "message": "$extensionName$ ha sido correctamente activada.",
       "placeholders": {
          "extensionName": {
@@ -26,39 +21,30 @@
        }
    },
    "uninstallButtonTitle": {
-      "description": "Texto mostrado en la notificación de extensión para desinstalar la extension.",
       "message": "Desinstalando de Chrome..."
    },
    "extDescription": {
-      "description": "Descripción de la extension.",
       "message": "Muestra una notificación cuando la extensión se actualiza."
    },
    "extName": {
-      "description": "Nombre de la extension.",
       "message": "Notificador de Actualizaciones de Extensiones"
    },
    "websiteButtonTitle": {
-      "description": "Texto mostrado en la notificación de actualización de extensión para visitar la web.",
       "message": "Ver en la Chrome Store"
    },
    "loadingMessageText": {
-      "description": "Texto mostrado en el changelog cuando consulta el changelog.",
       "message": "Leyendo changelog..."
    },
    "requestPermissionsText": {
-      "description": "Texto mostrado en el changelog cuando se requieren más permisos.",
       "message": "Esta característica experimental necesita que se acepte el permiso para acceder a la Chrome Web Store."
    },
    "showChangelogButtonText": {
-      "description": "Texto mostrado en el botón de changelog para pedir permisos.",
       "message": "Mostrar changelog"
    },
    "sorryMessageText": {
-      "description": "Texto mostrado en el changelog cuando el changelog no está disponible.",
       "message": "Lo siento... No hay changelog disponible en este momento."
    },
    "titleChangelogText": {
-      "description": "Título mostrado en el changelog.",
       "message": "$extensionName$ Changelog",
       "placeholders": {
          "extensionName": {
@@ -68,7 +54,6 @@
       }
    },
    "updatedExtensionMessage": {
-      "description": "Texto mostrado en la notificación de extensión. Espera nombre de extensión, versión antigua y la versión actual.",
       "message": "$extensionName$ ha sido actualizada de la version $extensionOldVersion$ a la $extensionVersion$.",
       "placeholders": {
          "extensionName": {
@@ -86,7 +71,6 @@
       }
    },
    "updatedExtensionTitle": {
-      "description": "Texto mostrado en la notificación de extensión. Espera nombre de extensión.",
       "message": "$extensionName$ Modificada",
       "placeholders": {
          "extensionName": {
@@ -96,23 +80,18 @@
       }
    },
    "welcomeText": {
-      "description": "Texto mostrado en la notificación de bienvenida.",
       "message": "Verás una notificación cuando las extensiones se actualicen."
    },
    "welcomeTitle": {
-      "description": "Texto mostrado en la notificación de bienvenida.",
       "message": "Serás avisado"
    },
    "alwaysDisableExtension": {
-      "description": "Texto mostrado para deshabilitar la extensión en la página de opciones.",
       "message": "Deshabilitar extensiones cuando se auto actualicen"
    },
    "newOptionsText": {
-      "description": "Texto mostrado en las nuevas opciones de notificación.",
       "message": "Puedes deshabilitar extensiones cuando se actualicen."
    },
    "newOptionsTitle": {
-      "description": "Texto mostrado en las opciones de notificación.",
       "message": "¿Sabes qué?"
    }
 }
