@@ -1,0 +1,97 @@
+{
+   "changelogButtonTitle": {
+      "message": "Muestra changelog"
+   },
+   "autoCloseNotification": {
+      "message": "Cierra notificaciones automáticamente"
+   },
+   "showChangelog": {
+      "message": "Muestra changelog (experimental)"
+   },
+   "enableButtonTitle": {
+      "message": "Reactivar"
+   },
+   "enabledExtensionMessage": {
+      "message": "$extensionName$ ha sido correctamente activada.",
+      "placeholders": {
+         "extensionName": {
+            "content": "$1",
+            "example": "My Chrome Extension"
+         }
+       }
+   },
+   "uninstallButtonTitle": {
+      "message": "Desinstalando de Chrome..."
+   },
+   "extDescription": {
+      "message": "Muestra una notificación cuando la extensión se actualiza."
+   },
+   "extName": {
+      "message": "Notificador de Actualizaciones de Extensiones"
+   },
+   "websiteButtonTitle": {
+      "message": "Ver en la Chrome Store"
+   },
+   "loadingMessageText": {
+      "message": "Leyendo changelog..."
+   },
+   "requestPermissionsText": {
+      "message": "Esta característica experimental necesita que se acepte el permiso para acceder a la Chrome Web Store."
+   },
+   "showChangelogButtonText": {
+      "message": "Mostrar changelog"
+   },
+   "sorryMessageText": {
+      "message": "Lo siento... No hay changelog disponible en este momento."
+   },
+   "titleChangelogText": {
+      "message": "$extensionName$ Changelog",
+      "placeholders": {
+         "extensionName": {
+            "content": "$1",
+            "example": "My Chrome Extension"
+         }
+      }
+   },
+   "updatedExtensionMessage": {
+      "message": "$extensionName$ ha sido actualizada de la version $extensionOldVersion$ a la $extensionVersion$.",
+      "placeholders": {
+         "extensionName": {
+            "content": "$1",
+            "example": "My Chrome Extension"
+         },
+         "extensionOldVersion": {
+            "content": "$2",
+            "example": "1.0"
+         },
+         "extensionVersion": {
+            "content": "$3",
+            "example": "2.0"
+         }
+      }
+   },
+   "updatedExtensionTitle": {
+      "message": "$extensionName$ Modificada",
+      "placeholders": {
+         "extensionName": {
+            "content": "$1",
+            "example": "My Chrome Extension"
+         }
+      }
+   },
+   "welcomeText": {
+      "message": "Verás una notificación cuando las extensiones se actualicen."
+   },
+   "welcomeTitle": {
+      "message": "Serás avisado"
+   },
+   "alwaysDisableExtension": {
+      "message": "Deshabilitar extensiones cuando se auto actualicen"
+   },
+   "newOptionsText": {
+      "message": "Puedes deshabilitar extensiones cuando se actualicen."
+   },
+   "newOptionsTitle": {
+      "message": "¿Sabes qué?"
+   }
+}
