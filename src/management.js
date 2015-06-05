@@ -44,6 +44,22 @@ function checkExtensionVersion(extension) {
   }
 }
 
+// Clean stored data when extension is uninstalled.
+function onExtensionUninstalled(extensionId) {
+  var storageAreas = ['local', 'sync'];
+  storageAreas.forEach(function(storageArea) {
+    chrome.storage[storageArea].get(null, function(data) {
+      var keys = Object.keys(data).filter(function(key) {
+        return key.startsWith(extensionId);
+      });
+      // Clean extension notifications.
+      chrome.storage[storageArea].remove(keys);
+    });
+  });
+  // Clean extension info.
+  localStorage.removeItem(extensionId);
+}
+
 // Dismiss extension notifications when extension is disabled.
 function onExtensionDisabled(extension) {
   closeExtensionNotifications(extension.id);
@@ -74,4 +90,5 @@ chrome.management.getAll(function(extensions) {
 
 // Register all listeners.
 chrome.management.onInstalled.addListener(checkExtensionVersion);
+chrome.management.onUninstalled.addListener(onExtensionUninstalled);
 chrome.management.onDisabled.addListener(onExtensionDisabled);
