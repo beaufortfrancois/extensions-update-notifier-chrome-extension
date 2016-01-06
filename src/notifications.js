@@ -6,6 +6,7 @@ var buttonSize = 16 * devicePixelRatio;
 function getNotificationOptions(extensionId) {
   return {
     type: 'basic',
+    priority: 2,
     iconUrl: 'chrome://extension-icon/'+ extensionId +'/'+ iconSize +'/1'
   };
 }
