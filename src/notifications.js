@@ -7,6 +7,7 @@ function getNotificationOptions(extensionId) {
   return {
     type: 'basic',
     priority: 2,
+    requireInteraction: true,
     iconUrl: 'chrome://extension-icon/'+ extensionId +'/'+ iconSize +'/1'
   };
 }
