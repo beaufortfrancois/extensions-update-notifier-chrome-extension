@@ -11,7 +11,7 @@
       "128": "images/128.png"
    },
    "manifest_version": 2,
-   "minimum_chrome_version": "42.0.2309.0",
+   "minimum_chrome_version": "50.0.2661.50",
    "name": "__MSG_extName__",
    "optional_permissions": [ "https://chrome.google.com/*" ],
    "options_ui": {
@@ -19,6 +19,6 @@
      "chrome_style": true
    },
    "permissions": [ "alarms", "management", "notifications", "storage" ],
-   "version": "3.4",
-   "version_name": "3.4"
+   "version": "3.5",
+   "version_name": "3.5"
 }
